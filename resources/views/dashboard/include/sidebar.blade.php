@@ -55,21 +55,21 @@
           
         {{--  Category Setting   --}}
 
-        <!-- Nav Item - Seller Settings  Menu -->
+        <!-- Nav Item - Category Settings  Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSellers"
                 aria-expanded="true" aria-controls="collapseSellers">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Seller Settings</span>
+                <span>Category Settings</span>
             </a>
             <div id="collapseSellers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.seller_createadmin_seller_create') }}">Add New</a>
-                    <a class="collapse-item" href="{{ route('admin.seller_alladmin_seller_all') }}">All Seller</a>
+                    <a class="collapse-item" href="{{ route('admin.category_create') }}">Add New</a>
+                    <a class="collapse-item" href="{{ route('admin.category_all') }}">All Category</a>
                 </div>
             </div>
         </li>
-        
+
 
            {{--  Access For Admin   --}}
 

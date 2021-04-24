@@ -66,6 +66,22 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
     Route::post('/password/newpassword', ['as' => 'newpassword', 'uses' => 'AdminController@new_password'])->name('admin_new_pass');
 
 
+    // Category Settings Route    **********************
+
+    Route::get('/category/create', ['uses' => 'CategoryController@create'])->name('category_create');
+
+    Route::post('/category/create/store', ['uses' => 'CategoryController@store'])->name('category_create_store');
+   
+    Route::get('/categories', [ 'uses' => 'CategoryController@index'])->name('category_all');
+    
+    Route::get('/category/edit/{id}', [ 'uses' => 'CategoryController@edit'])->name('category_edit');
+    
+    Route::post('/category/update/{id}', ['uses' => 'CategoryController@update'])->name('category_update');
+
+    Route::get('/category/view/{id}', ['uses' => 'CategoryController@show'])->name('category_show');
+    
+    Route::get('/category/delete/{id}', [ 'uses' => 'CategoryController@destroy'])->name('category_destroy');
+
 
     // Seller Settings Route    **********************
 
