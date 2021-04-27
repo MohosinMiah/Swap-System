@@ -83,6 +83,27 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
     Route::get('/category/delete/{id}', [ 'uses' => 'CategoryController@destroy'])->name('category_destroy');
 
 
+
+    // Brand Settings Route    **********************
+
+    Route::get('/brand/create', ['uses' => 'BrandController@create'])->name('brand_create');
+
+    Route::post('/brand/create/store', ['uses' => 'BrandController@store'])->name('brand_create_store');
+    
+    Route::get('/brands', [ 'uses' => 'BrandController@index'])->name('brand_all');
+    
+    Route::get('/brand/edit/{id}', [ 'uses' => 'BrandController@edit'])->name('brand_edit');
+    
+    Route::post('/brand/update/{id}', ['uses' => 'BrandController@update'])->name('brand_update');
+
+    Route::get('/brand/view/{id}', ['uses' => 'BrandController@show'])->name('brand_show');
+    
+    Route::get('/brand/delete/{id}', [ 'uses' => 'BrandController@destroy'])->name('brand_destroy');
+
+        
+
+
+
     // Seller Settings Route    **********************
 
     Route::get('/seller/create', ['as' => 'seller_create', 'uses' => 'AdminController@create'])->name('admin_seller_create');

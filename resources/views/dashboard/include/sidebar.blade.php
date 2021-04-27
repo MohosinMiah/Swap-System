@@ -57,18 +57,38 @@
 
         <!-- Nav Item - Category Settings  Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSellers"
-                aria-expanded="true" aria-controls="collapseSellers">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecategory"
+                aria-expanded="true" aria-controls="collapsecategory">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Category Settings</span>
             </a>
-            <div id="collapseSellers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="collapsecategory" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('admin.category_create') }}">Add New</a>
                     <a class="collapse-item" href="{{ route('admin.category_all') }}">All Category</a>
                 </div>
             </div>
         </li>
+
+
+              {{--  Brand Setting   --}}
+
+              <!-- Nav Item - Brand Settings  Menu -->
+              <li class="nav-item">
+                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebrand"
+                      aria-expanded="true" aria-controls="collapsebrand">
+                      <i class="fas fa-fw fa-folder"></i>
+                      <span>Brand Settings</span>
+                  </a>
+                  <div id="collapsebrand" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                      <div class="bg-white py-2 collapse-inner rounded">
+                          <a class="collapse-item" href="{{ route('admin.brand_create') }}">Add New</a>
+                          <a class="collapse-item" href="{{ route('admin.brand_all') }}">All Brand</a>
+                      </div>
+                  </div>
+              </li>
+
+
 
 
            {{--  Access For Admin   --}}
