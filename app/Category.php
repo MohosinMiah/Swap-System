@@ -12,7 +12,7 @@ class Category extends Model
      */
     public function brand()
     {
-        return $this->hasMany(Brand::class);
+        return $this->hasMany(Brand::class,'category_id');
     }
 
 }

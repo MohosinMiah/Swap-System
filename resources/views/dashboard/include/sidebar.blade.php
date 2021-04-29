@@ -90,6 +90,22 @@
 
 
 
+              {{--  Mobile Category Setting   --}}
+
+              <!-- Nav Item - Mobile Category Settings  Menu -->
+              <li class="nav-item">
+                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemobileCategory"
+                      aria-expanded="true" aria-controls="collapsemobileCategory">
+                      <i class="fas fa-fw fa-folder"></i>
+                      <span>Mobile Settings</span>
+                  </a>
+                  <div id="collapsemobileCategory" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                      <div class="bg-white py-2 collapse-inner rounded">
+                          <a class="collapse-item" href="{{ route('admin.mobileCategory_create') }}">Mobile Category</a>
+                      </div>
+                  </div>
+              </li>
+
 
            {{--  Access For Admin   --}}
 

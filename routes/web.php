@@ -100,6 +100,15 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
     
     Route::get('/brand/delete/{id}', [ 'uses' => 'BrandController@destroy'])->name('brand_destroy');
 
+
+        // Mobile Category Settings Route    **********************
+
+        Route::get('/mobileCategory/create', ['uses' => 'MobileCategoryController@create'])->name('mobileCategory_create');
+
+        Route::post('/mobileCategory/create/store', ['uses' => 'MobileCategoryController@store'])->name('mobileCategory_create_store');
+
+        Route::post('/mobileCategory/ajax/brands', ['uses' => 'MobileCategoryController@brands'])->name('ajax_brands');
+
         
 
 
