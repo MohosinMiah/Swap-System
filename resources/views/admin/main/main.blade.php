@@ -25,7 +25,8 @@
   <p>Here There EveryWhere</p> 
 
   <div class="logo">
-    <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Discount Logo"> </a>
+    {{-- <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Swap Software Dashboard"> </a> --}}
+    <a href="/"> <h1>Swap Software Dashboard</h1> </a>
   </div>
 
   <div class="notice">

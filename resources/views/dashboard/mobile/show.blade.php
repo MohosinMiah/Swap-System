@@ -16,6 +16,7 @@
     <style type="text/css">
       .bootstrap-tagsinput{
           width: 100%;
+          pointer-events: none;
       }
       .label-info{
           background-color: #17a2b8;
@@ -75,19 +76,17 @@
             <div class="card">
                 <div class="card-body">
                    
-            <form method="POST" action="{{ route('admin.mobileCategory_create_store')}}" enctype="multipart/form-data">
-                @csrf
+            <form  enctype="multipart/form-data">
+         
 
                 <div class="form-group">
                   <label for="category_id">Category *</label>
-                  <select class="form-control" id="category_id" name="category_id" required>
-                    <option selected>Select Category</option>
-                         
-                    @foreach ($data['categories'] as $category)
+                  <select class="form-control" id="category_id" name="category_id" readonly>                         
+                   
 
-                    <option value="{{ $category->id }}" @if($category->name == "Mobile") selected @endif >{{ $category->name }}</option>
+                    <option value="{{ $mobileCategory->category->id }}" > {{ $mobileCategory->category->name }} </option>
 
-                    @endforeach
+            
                     
            
                   </select>
@@ -95,14 +94,11 @@
 
                 <div class="form-group">
                   <label for="brand">Brand *</label>
-                  <select class="form-control" id="brand" name="brand_id" required>
-                    <option selected>Select Brand</option>
+                  <select class="form-control" id="brand" name="brand_id" readonly>
                          
-                    @foreach ($data['brands'] as $brand)
 
-                    <option value="{{ $brand->id }}" >{{ $brand->name }}</option>
+                    <option value="{{ $mobileCategory->brand->id }}" >{{ $mobileCategory->brand->name }}</option>
 
-                    @endforeach
                     
            
                   </select>
@@ -111,13 +107,15 @@
                 
                 <div class="form-group">
                   <label for="mobile_model">Model Name *</label>
-                  <input type="text" class="form-control" id="mobile_model" name="mobile_model" placeholder="Model Name " required>
+                  <input type="text" class="form-control" id="mobile_model" name="mobile_model" value="{{ $mobileCategory->mobile_model }}" readonly>
                 </div>
 
 
                 <div class="form-group">
                   <label for="name"> Image *</label>
-                  <input type="file" class="form-control" id="image" name="image"  required>
+                  {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+                  <img src="{{url('/images/'.$mobileCategory->image)}}" alt="Mobile Model Image" width="400" height="300">
+
                 </div>
 
                  <hr>
@@ -125,67 +123,67 @@
     
             <div class="form-group">
               <label for="ram_rom">RAM | ROM *</label>
-              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" >
+              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" value="{{ $mobileCategory->ram_rom }}"  readonly>
             </div>
 
             <div class="form-group">
               <label for="sim">SIM *</label>
-              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" >
+              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" value="{{ $mobileCategory->sim }}"   readonly>
             </div>
 
          
             {{--  <div class="form-group">
               <label for="camera">Camera *</label>
-              <input type="text" class="form-control" id="camera" name="camera" data-role="tagsinput"   required>
+              <input type="text" class="form-control" id="camera" name="camera" data-role="tagsinput"   readonly>
             </div>
 
             <div class="form-group">
               <label for="processor">Processor *</label>
-              <input type="text" class="form-control" id="processor" name="processor" data-role="tagsinput"   required>
+              <input type="text" class="form-control" id="processor" name="processor" data-role="tagsinput"   readonly>
             </div>
 
             <div class="form-group">
               <label for="battery">Battery *</label>
-              <input type="text" class="form-control" id="battery" name="battery" data-role="tagsinput"   required>
+              <input type="text" class="form-control" id="battery" name="battery" data-role="tagsinput"   readonly>
             </div>  --}}
 
             <hr>
             <h3 class="text-center">Prices Upto</h3>
             <div class="form-group">
               <label for="prices">Prices *</label>
-              <input type="text" class="form-control" id="prices" name="prices" data-role="tagsinput" required>
+              <input type="text" class="form-control" id="prices" name="prices" data-role="tagsinput" value="{{ $mobileCategory->prices }}"   readonly>
             </div>
             <hr>
             <h3 class="text-center">Specifications</h3>
      
              {{--  <div class="form-group">
                <label for="specificationram_rom">RAM | ROM *</label>
-               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput"  required>
+               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput"  readonly>
              </div>
     --}}
              <div class="form-group">
                <label for="specificationsim">SIM *</label>
-               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput" >
+               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $mobileCategory->specificationsim }}"  readonly>
              </div>
 
              <div class="form-group">
                <label for="specificationcamera">Camera *</label>
-               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput" >
+               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput"  value="{{ $mobileCategory->specificationcamera }}" readonly>
              </div>
  
              <div class="form-group">
                <label for="specificationprocessor">Processor *</label>
-               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" >
+               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" value="{{ $mobileCategory->specificationprocessor }}"  readonly>
              </div>
  
              <div class="form-group">
                <label for="specificationbattery">Battery *</label>
-               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput"  >
+               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $mobileCategory->specificationbattery }}"  readonly>
              </div>
  
 
-                <button type="submit" class="btn btn-primary">ADD Brand</button>
-              </form>
+             <a class="btn btn-primary" href="{{ route('admin.mobileCategory_all') }}">Back To List</a>
+            </form>
 
        
             </div>

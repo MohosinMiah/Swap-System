@@ -105,11 +105,19 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
         Route::get('/mobileCategory/create', ['uses' => 'MobileCategoryController@create'])->name('mobileCategory_create');
 
+        Route::get('mobiles', ['uses' => 'MobileCategoryController@index'])->name('mobileCategory_all');
+
         Route::post('/mobileCategory/create/store', ['uses' => 'MobileCategoryController@store'])->name('mobileCategory_create_store');
 
         Route::post('/mobileCategory/ajax/brands', ['uses' => 'MobileCategoryController@brands'])->name('ajax_brands');
 
+        Route::get('/mobileCategory/edit/{id}', [ 'uses' => 'MobileCategoryController@edit'])->name('mobileCategory_edit');
+    
+        Route::post('/mobileCategory/update/{id}', ['uses' => 'MobileCategoryController@update'])->name('mobileCategory_update');
+
+        Route::get('/mobileCategory/view/{id}', ['uses' => 'MobileCategoryController@show'])->name('mobileCategory_show');
         
+        Route::get('/mobileCategory/delete/{id}', [ 'uses' => 'MobileCategoryController@destroy'])->name('mobileCategory_destroy');
 
 
 

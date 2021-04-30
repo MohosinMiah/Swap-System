@@ -97,12 +97,14 @@
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemobileCategory"
                       aria-expanded="true" aria-controls="collapsemobileCategory">
                       <i class="fas fa-fw fa-folder"></i>
-                      <span>Mobile Settings</span>
+                      <span>Mobile Category</span>
                   </a>
                   <div id="collapsemobileCategory" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                      <div class="bg-white py-2 collapse-inner rounded">
-                          <a class="collapse-item" href="{{ route('admin.mobileCategory_create') }}">Mobile Category</a>
-                      </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.mobileCategory_create') }}">Add New </a>
+                        <a class="collapse-item" href="{{ route('admin.mobileCategory_all') }}">All Mobile </a>
+                    </div> 
+
                   </div>
               </li>
 
@@ -112,7 +114,7 @@
         @if (Session::get('admin_is_login'))
               
 
-           <!-- Nav Item - Seller Settings  Menu -->
+           {{-- <!-- Nav Item - Seller Settings  Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSellers"
                     aria-expanded="true" aria-controls="collapseSellers">
@@ -125,12 +127,12 @@
                         <a class="collapse-item" href="{{ route('admin.seller_alladmin_seller_all') }}">All Seller</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
         @endif
 
             <!-- Nav Item - Admin Settings  Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomers"
                     aria-expanded="true" aria-controls="collapseCustomers">
                     <i class="fas fa-fw fa-folder"></i>
@@ -139,7 +141,7 @@
                 <div id="collapseCustomers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                                 {{-- Check Seller or Not  --}}
+                           Check Seller or Not  
                                  @if(Session::get('seller_is_login'))
                         <a class="collapse-item" href="{{ route('seller.customer_createseller_seller_create') }}">Add New</a>
                                  @endif
@@ -147,7 +149,7 @@
                         <a class="collapse-item" href="{{ route('seller.customer_allseller_seller_all') }}">All Customer</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             {{--  Admin Setting   --}}
 
