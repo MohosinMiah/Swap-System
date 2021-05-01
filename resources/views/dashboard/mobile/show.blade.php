@@ -156,11 +156,11 @@
             <hr>
             <h3 class="text-center">Specifications</h3>
      
-             {{--  <div class="form-group">
+              <div class="form-group">
                <label for="specificationram_rom">RAM | ROM *</label>
-               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput"  readonly>
+               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput" value="{{ $mobileCategory->specificationram_rom }}" readonly>
              </div>
-    --}}
+    
              <div class="form-group">
                <label for="specificationsim">SIM *</label>
                <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $mobileCategory->specificationsim }}"  readonly>

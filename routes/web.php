@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');;
+Route::get('adminpanel/', 'HomeController@index')->name('home');;
 
 
 
@@ -152,7 +152,6 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
 
 
-
     
 
 });
@@ -231,3 +230,23 @@ Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
 
 
 });
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Website Public Route    *********************************************************
+|--------------------------------------------------------------------------
+|
+| Here contains All  Website Public Route 
+|
+*/
+
+
+
+// Display Swap Product Based On Category, Model , Brand and Etc    **********************
+
+Route::get('/','WebsiteMaster@index')->name('home');
+
+

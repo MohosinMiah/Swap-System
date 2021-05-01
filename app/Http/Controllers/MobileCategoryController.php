@@ -122,7 +122,7 @@ class MobileCategoryController extends Controller
 // -------------------------- Specifications ------------------------------------
 
 
-        // $specificationram_rom = $request->specificationram_rom;        
+        $specificationram_rom = $request->specificationram_rom;        
 
         $specificationsim = $request->specificationsim;
 
@@ -178,6 +178,7 @@ class MobileCategoryController extends Controller
 
 
 
+                    'specificationram_rom' => $specificationram_rom, 
 
                     'specificationsim' => $specificationsim,
 
@@ -295,7 +296,7 @@ class MobileCategoryController extends Controller
 // -------------------------- Specifications ------------------------------------
 
 
-        // $specificationram_rom = $request->specificationram_rom;        
+        $specificationram_rom = $request->specificationram_rom;        
 
         $specificationsim = $request->specificationsim;
 
@@ -355,7 +356,8 @@ class MobileCategoryController extends Controller
 
 
 
-
+                    'specificationram_rom' => $specificationram_rom,  
+                    
                     'specificationsim' => $specificationsim,
 
                     'specificationcamera' => $specificationcamera,
