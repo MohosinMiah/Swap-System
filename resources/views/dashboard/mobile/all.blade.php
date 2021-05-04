@@ -73,8 +73,8 @@
                 
                   <tr>
                       <td>{{$mobileCategory->id}}</td>
-                      <td>{{$mobileCategory->category->name}}</td>
-                      <td>{{$mobileCategory->brand->name}}</td>
+                      <td>{{$mobileCategory->category['name']}}</td>
+                      <td>{{$mobileCategory->brand['name']}}</td>
                       <td>{{$mobileCategory->mobile_model}}</td>
                       <td>
                         <?php 

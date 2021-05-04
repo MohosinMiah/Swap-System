@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Swap Dashboard - @yield('title')</title>
+  <title>Live Link BD Dashboard - @yield('title')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,16 +21,21 @@
   {{-- Header Section  --}}
 
 <div class="jumbotron text-center top-header">
-  <h1>Swap Dashboard</h1>
-  <p>Here There EveryWhere</p> 
+  <h1>Live Link BD Dashboard</h1>
 
   <div class="logo">
+    <a href="{{ route('adminpanel_dashboard') }}" style="
+      color: #ffffff;
+      text-decoration: none;
+      background-color: transparent;
+      font-size: 20px;
+  ">Back To Login</a>
     {{-- <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Swap Software Dashboard"> </a> --}}
-    <a href="/"> <h1>Swap Software Dashboard</h1> </a>
+    <h1> <h1>Live Link BD Software Dashboard</h1> </h1>
   </div>
 
   <div class="notice">
-    <h3><marquee>Welcome to Swap Dashboard. Admin says "Next 20 days we fixed a target that we increase our consumer number upto 2000."</marquee></h3>
+    <h3><marquee>Welcome to Live Link BD Dashboard. Admin says "We  are commited for bettter service because we belive customer is the king."</marquee></h3>
 
   </div>
 
@@ -47,7 +52,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
 
-      <p><strong>All Right Preserved &copy;<a href="#" class="copy_right_link"> Swap Dashboard </a></strong></p>
+      <p><strong>All Right Preserved &copy;<a href="http://www.livelinkbd.com/" class="copy_right_link"> Live Link BD Dashboard </a></strong></p>
     </div>
 
   </div>

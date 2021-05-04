@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Swap Dashboard - @yield('title')</title>
+  <title>Live Link BD Dashboard - @yield('title')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{-- Style Files *************************    --}}
@@ -18,9 +18,9 @@
   <!-- Header -->
     <header id="header">
       <div class="inner">
-        <a href="/" class="logo" > <img src="{{  URL::asset('/images/swap-logo.png') }}" alt="Swap Dashboard "> </a>
+        <a href="{{ route('home') }}" class="logo" > <img src="{{  URL::asset('/images/livelinkbd-logo.png') }}" alt="Live Link BD Dashboard "> </a>
         <nav id="nav">
-          <a href="https://www.swap.com/" target="_blank">Visit Website</a>
+          <a href="http://www.livelinkbd.com/" target="_blank">Visit Website</a>
      
         </nav>
         <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
@@ -31,7 +31,7 @@
     <section id="banner">
       <div class="inner">
         <header>
-          <h1>Welcome to Swap Dashboard</h1>
+          <h1>Welcome to Live Link BD Dashboard</h1>
         </header>
 
         <div class="flex ">
@@ -39,13 +39,13 @@
           <div>
             <i class="fa fa-user" style="font-size:55px;color:green" data-toggle="tooltip" data-placement="top" title="Admin Login"></i>
             <a href="{{ route('admin.loginadmin_login') }}"> <h3>Admin Login</h3> </a>
-            <p>Login for Manage Sellers and Consumers</p>
+            <p>Have All Right (Supper Access)</p>
           </div>
 
           <div>
             <i class="fa fa-user" style="font-size:55px" data-toggle="tooltip" data-placement="top" title="Sellers Login"></i>
             <a href="{{ route('seller.loginseller_login') }}"> <h3>Seller Login</h3> </a>
-            <p>Login for Manage Consumers or Customers</p>
+            <p>Login for Manage Products</p>
           </div>
 
 
@@ -64,12 +64,12 @@
           01857126452 </a>
          </h3>
 
-         <h3> <a href="mailto:query@swap.com"><i class="fa fa-envelope" aria-hidden="true"></i>
-          query@swap.com</a> 
+         <h3> <a href="mailto:query@livelinkbd.com"><i class="fa fa-envelope" aria-hidden="true"></i>
+          query@livelinkbd.com</a> 
          </h3>
 
         <div class="copyright">
-          &copy; swap All Right Preserved  <a href="https://www.swap.com/"></a>
+          &copy; Live Link BD All Right Preserved  <a href="http://www.livelinkbd.com/"></a>
         </div>
 
       </div>

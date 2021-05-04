@@ -1,7 +1,7 @@
  
 @extends('dashboard.index')
 
-@section('title') Swap Dashboard - @stop
+@section('title') Live Link BD Dashboard - @stop
 
 
 @section('main_body')

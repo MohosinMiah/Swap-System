@@ -52,7 +52,7 @@
                 
                   <tr>
                       <td>{{$brand->id}}</td>
-                      <td>{{$brand->category->name}}</td>
+                      <td>{{$brand->category['name']}}</td>
                       <td>{{$brand->name}}</td>
                       <td>
                         <img src="{{url('/images/'.$brand->image)}}" alt="{{ $brand->image }}" width="350" height="300">

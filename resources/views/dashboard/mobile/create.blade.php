@@ -160,7 +160,7 @@
      
              <div class="form-group">
                <label for="specificationram_rom">RAM | ROM *</label>
-               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput"  required>
+               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput"  >
              </div>
     
              <div class="form-group">

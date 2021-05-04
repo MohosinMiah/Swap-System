@@ -4,14 +4,14 @@
 @include('front.include.header')
     <main role="main">
 
-    
-  
+
+
   {{--  Footer Included   --}}
-  @include('front.include.slider')
+  @yield('slider')
 
 
  {{--  Hero Section   --}}
-  @include('front.include.hero')
+  @yield('hero')
 
       <div class="album py-5 bg-light">
         <div class="container">
@@ -23,4 +23,4 @@
     </main>
 
   {{--  Footer Included   --}}
-  @include('front.include.footer')
+  @include('front.include.footer') 

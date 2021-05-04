@@ -357,7 +357,7 @@ class AdminController extends Controller
         // $text="Hello Dear, Customer . Your OPT  Code ".$code;
 
         
-        $text="From Swap Dashboard OPT code =  ".$code;
+        $text="From Live Link BD Dashboard OPT code =  ".$code;
         $data= array(
         'username'=>"01857126452",
         'password'=>"2RVXW48F",

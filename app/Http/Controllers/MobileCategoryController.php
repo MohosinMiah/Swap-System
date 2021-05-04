@@ -85,7 +85,7 @@ class MobileCategoryController extends Controller
             'category_id' => 'required',
             'brand_id' => 'required',
             'mobile_model' => 'required|max:200',
-            'ram_rom' => 'required',
+            // 'ram_rom' => 'required',
             'prices'  => 'required',
 
         ]);

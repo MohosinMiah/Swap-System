@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('adminpanel/', 'HomeController@index')->name('home');;
+Route::get('adminpanel/', 'HomeController@index')->name('adminpanel_dashboard');;
 
 
 
@@ -248,5 +248,13 @@ Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
 // Display Swap Product Based On Category, Model , Brand and Etc    **********************
 
 Route::get('/','WebsiteMaster@index')->name('home');
+
+Route::get('/sell/{category}','WebsiteMaster@single_category')->name('single_category');
+
+Route::get('/sell/{category}/{brand}','WebsiteMaster@single_brand')->name('single_brand');
+
+Route::get('/sell/{category}/{brand}/{product}','WebsiteMaster@single_product')->name('single_product');
+
+
 
 
