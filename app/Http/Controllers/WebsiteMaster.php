@@ -133,22 +133,29 @@ class WebsiteMaster extends Controller
         $product_name = str_replace('-',' ',$product);
         
         // Find out product details based on product name
-        $mobiler_category_products = MobileCategory::where('mobile_model',$product_name)->first();
+        $mobiler_category_product = MobileCategory::where('mobile_model',$product_name)->first();
   
   
 
         $data = [
-        'mobiler_category_products' => $mobiler_category_products,
+        'mobiler_category_product' => $mobiler_category_product,
         'category_name' => $category_name,
         'brand_name' => $brand_name,
         ];
 
 
-         var_dump($data['mobiler_category_products']['ram_rom']);
-         die;
+
 
 
         return view('front.pages.product',compact('data')); 
+
+    }
+
+
+
+    function single_product_get_value($category, $brand, $product){
+        echo "Single Product Get Value";
+        die;
 
     }
 

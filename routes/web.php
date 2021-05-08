@@ -255,6 +255,8 @@ Route::get('/sell/{category}/{brand}','WebsiteMaster@single_brand')->name('singl
 
 Route::get('/sell/{category}/{brand}/{product}','WebsiteMaster@single_product')->name('single_product');
 
+Route::get('/sell/get_value/{category}/{brand}/{product}','WebsiteMaster@single_product_get_value')->name('single_product_get_value');
+
 
 
 
