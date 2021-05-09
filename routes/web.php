@@ -260,3 +260,4 @@ Route::get('/sell/get_value/{category}/{brand}/{product}','WebsiteMaster@single_
 
 
 
+Route::post('/sell/get_value','WebsiteMaster@get_val')->name('get_val');

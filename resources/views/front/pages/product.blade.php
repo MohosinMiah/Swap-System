@@ -61,7 +61,7 @@
 
 
   @section('js')
-
+  
 <script>
 
   // Add active class to the current  RAM  | ROM
@@ -115,9 +115,7 @@
 
 });
 
-$('#get_exact_value').click(function(){
-console.log("Get Exact Value");
-});
+
 
 
 
@@ -135,6 +133,8 @@ console.log("Get Exact Value");
 
   
   </script>
+
+
 
   @stop
 
@@ -269,19 +269,16 @@ console.log("Get Exact Value");
         <br>
         <span class="specific-content">{{ $data['mobiler_category_product']->specificationprocessor }}</span>
       </li>
-
-      
     </ul> 
-    <script>
-      var res = "success";
-   </script>
-   <?php
-      $name = "<script>document.writeln(res);</script>";
-   ?>
-    <br>
-    <br>
-    <a class="btn btn-primary" id="get_exact_value" href="{{ route('single_product_get_value',[Str::slug($data['category_name']),Str::slug($name),Str::slug($data['mobiler_category_product']->mobile_model)]) }}" style="position: absolute;display:block;margin-top:20px;">Get Value</a>
 
+ 
+    <input type="hidden" id="category_id" value="{{  $data['mobiler_category_product']->category_id }}">
+    <input type="hidden" id="brand_id" value="{{  $data['mobiler_category_product']->brand_id }}">
+    <input type="hidden" id="product_id" value="{{  $data['mobiler_category_product']->id }}">
+    <br>
+    <br>
+    <a class="btn btn-primary" id="get_exact_value" style="position: absolute;display:block;margin-top:20px;">Get Value</a>
+    {{--  href="{{ route('single_product_get_value',[Str::slug($data['category_name']),Str::slug($data['brand_name']),Str::slug($data['mobiler_category_product']->mobile_model)]) }}"   --}}
 
     </div>
 
@@ -292,6 +289,44 @@ console.log("Get Exact Value");
 
   </div>
 </div>
+
+<!-- End of Main Content -->
+<script type="text/javascript">
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+
+  $(document).ready(function () {
+  $('#get_exact_value').on('click',function(e) {
+    var get_ram_rom_id = ram_rom_id;
+    var get_sim_id = sim_id;
+
+  
+    $.ajax({
+      url:"{{ route('get_val') }}",
+      type:"POST",
+      data: {
+        _token: '{{csrf_token()}}',
+        get_ram_rom_id: get_ram_rom_id,
+        get_sim_id  : get_sim_id,
+        category_id : document.getElementById('category_id').value,
+        brand_id    :  document.getElementById('brand_id').value,
+        product_id  :  document.getElementById('product_id').value,
+      },
+  success:function (data) {
+           console.log("Product ID =  "+data.product_id + " Category ID "+ data.category_id);
+           $('#get_exact_value').empty();
+           $('#get_exact_value').append("Get Exact Value");
+
+  }
+  })
+  
+  });
+  });
+  </script>
 
 
   @stop

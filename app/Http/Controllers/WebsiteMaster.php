@@ -160,5 +160,24 @@ class WebsiteMaster extends Controller
     }
 
 
+    function get_val(Request $request){
+        $get_ram_rom_id = $request->get_ram_rom_id;
+        $get_sim_id = $request->get_sim_id;
+
+        $category_id = $request->category_id;
+        $brand_id = $request->brand_id;
+        $product_id = $request->product_id;
+
+
+       return response()->json([
+        'get_ram_rom_id' => $get_ram_rom_id,
+        'get_sim_id' => $get_sim_id,
+        'category_id' => $category_id,
+        'brand_id' => $brand_id,
+        'product_id' => $product_id,
+    ]);
+    }
+
+
 
 }
