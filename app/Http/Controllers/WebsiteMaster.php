@@ -161,13 +161,57 @@ class WebsiteMaster extends Controller
 
 
     function get_val(Request $request){
+
         $get_ram_rom_id = $request->get_ram_rom_id;
         $get_sim_id = $request->get_sim_id;
+
+
 
         $category_id = $request->category_id;
         $brand_id = $request->brand_id;
         $product_id = $request->product_id;
 
+
+
+        $price_id = 0;
+
+            
+        // Find out product details based on product ID
+        $mobiler_category_product = MobileCategory::where('id',$product_id)->first();
+
+
+        // Array 
+//   $ram_rom_array = explode(',', $mobiler_category_product->ram_rom;
+//   $sim_array = explode(',', $mobiler_category_product->sim;
+  $prices_array = explode(',', $mobiler_category_product->prices);
+
+
+
+       if($get_ram_rom_id == 0 && $get_sim_id == 0) {
+        $price_id = 0;
+       }else if($get_ram_rom_id == 1 && $get_sim_id == 0){
+        $price_id = 1;
+
+       }else if($get_ram_rom_id == 3  && $get_sim_id == 0){
+        $price_id = 2;
+
+       }else if($get_ram_rom_id == 0 && $get_sim_id == 1){
+        $price_id = 3;
+
+       }else if($get_ram_rom_id == 1 && $get_sim_id == 1){
+        $price_id = 4;
+
+       }else if($get_ram_rom_id == 2 && $get_sim_id == 1){
+        $price_id = 5;
+       }
+
+  // Array 
+//   $ram_rom_array = explode(',', $dmobiler_category_product->ram_rom;
+//   $sim_array = explode(',', $dmobiler_category_product->sim;
+//   $prices_array = explode(',', $dmobiler_category_product->prices);
+  
+
+ $estimated_value = $prices_array[$price_id];
 
        return response()->json([
         'get_ram_rom_id' => $get_ram_rom_id,
@@ -175,7 +219,9 @@ class WebsiteMaster extends Controller
         'category_id' => $category_id,
         'brand_id' => $brand_id,
         'product_id' => $product_id,
+        'estimated_value' => $estimated_value,
     ]);
+
     }
 
 
