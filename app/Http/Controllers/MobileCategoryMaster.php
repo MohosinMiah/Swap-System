@@ -11,7 +11,7 @@ use DB;
 use Session;
 
 
-class WebsiteMaster extends Controller
+class MobileCategoryMaster extends Controller
 {
 
     // Display Swap Product Based On Category, Model , Brand and Etc    **********************
@@ -51,7 +51,7 @@ class WebsiteMaster extends Controller
 
         ];
 
-       return view('front.pages.category',compact('data'));
+       return view('front.pages.mobile.category',compact('data'));
 
     }
 
@@ -97,7 +97,7 @@ class WebsiteMaster extends Controller
 
 
 
-        return view('front.pages.brand',compact('data'));
+        return view('front.pages.mobile.brand',compact('data'));
 
 
     }
@@ -149,7 +149,7 @@ class WebsiteMaster extends Controller
 
 
 
-        return view('front.pages.product',compact('data')); 
+        return view('front.pages.mobile.product',compact('data')); 
 
     }
 
@@ -371,7 +371,7 @@ $estimated_price = $prices_array[$price_id];
  ];
 
 
-    return view('front.pages.sendOTP',compact('data')); 
+    return view('front.pages.mobile.sendOTP',compact('data')); 
 
 }
 
@@ -461,7 +461,7 @@ public function mobile_order_success(Request $request) {
 
 public function successfully_place_order(){
     
-    return view("front.pages.orderSuccess");
+    return view("front.pages.mobile.orderSuccess");
 }
 
 

@@ -247,24 +247,24 @@ Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
 
 // Display Swap Product Based On Category, Model , Brand and Etc    **********************
 
-Route::get('/','WebsiteMaster@index')->name('home');
+Route::get('/','MobileCategoryMaster@index')->name('home');
 
-Route::get('/sell/{category}','WebsiteMaster@single_category')->name('single_category');
+Route::get('/sell/{category}','MobileCategoryMaster@single_category')->name('single_category');
 
-Route::get('/sell/{category}/{brand}','WebsiteMaster@single_brand')->name('single_brand');
+Route::get('/sell/{category}/{brand}','MobileCategoryMaster@single_brand')->name('single_brand');
 
-Route::get('/sell/{category}/{brand}/{product}','WebsiteMaster@single_product')->name('single_product');
+Route::get('/sell/{category}/{brand}/{product}','MobileCategoryMaster@single_product')->name('single_product');
 
-Route::get('/sell/get_value/{category}/{brand}/{product}','WebsiteMaster@single_product_get_value')->name('single_product_get_value');
-
-
+Route::get('/sell/get_value/{category}/{brand}/{product}','MobileCategoryMaster@single_product_get_value')->name('single_product_get_value');
 
 
-Route::post('/sell/get_value','WebsiteMaster@get_val')->name('get_val');
-
-Route::any('/sell/get_exact_value/place_request/{category}/{brand}/{product}','WebsiteMaster@get_more_info_send_sms')->name('get_more_info_send_sms');
 
 
-Route::post("sell/mobile/order/success",'WebsiteMaster@mobile_order_success')->name('mobile_order_success');
+Route::post('/sell/get_value','MobileCategoryMaster@get_val')->name('get_val');
 
-Route::any("placed/sell/order/success",'WebsiteMaster@successfully_place_order')->name('successfully_place_order');
+Route::any('/sell/get_exact_value/place_request/{category}/{brand}/{product}','MobileCategoryMaster@get_more_info_send_sms')->name('get_more_info_send_sms');
+
+
+Route::post("sell/mobile/order/success",'MobileCategoryMaster@mobile_order_success')->name('mobile_order_success');
+
+Route::any("placed/sell/order/success",'MobileCategoryMaster@successfully_place_order')->name('successfully_place_order');
