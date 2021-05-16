@@ -50,6 +50,12 @@
       padding: 6px;
 
     }
+    {{--  Style Model Design   --}}
+
+    .modal{
+      margin-top: 15%;
+    }
+
 
 
 </style>
@@ -313,7 +319,49 @@
         <h3 id="get_up_to_value"></h3>
       </div>
       <div class="col-md-12">
-        <a class="btn btn-primary" id="get_exact_value" >Get Exact Value</a>
+        {{--  <a class="btn btn-primary" id="get_exact_value" >Get Exact Value</a>  --}}
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#get_exact_value">Get Exact Value</button>
+
+        
+        <!-- Modal -->
+        <div class="modal fade" id="get_exact_value" tabindex="-1" role="dialog" aria-labelledby="get_exact_valueLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="get_exact_valueLabel">Please enter your phone number</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               
+                 {{--  Model Body Start  --}}
+                 <form method="POST" action="{{ route('get_more_info_send_sms',[Str::slug($data['category_name']),Str::slug($data['brand_name']),Str::slug($data['mobiler_category_product']->mobile_model)] ) }}">
+                   @csrf
+                  <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{11}"  class="form-control"  aria-describedby="phoneHelp" placeholder="Phone Number">
+                    <small id="phoneHelp" class="form-text text-muted">We ll never share your phone number with anyone else.</small>
+                  </div>
+                  <input type="hidden" name="get_category_id" value="{{  $data['mobiler_category_product']->category_id }}">
+                  <input type="hidden" name="get_brand_id" value="{{  $data['mobiler_category_product']->brand_id }}">
+                  <input type="hidden" name="get_product_id" value="{{  $data['mobiler_category_product']->id }}">   
+                  <input type="hidden" name="set_ram_rom_id" id="set_ram_rom_id" value="null">   
+                  <input type="hidden" name="set_sim_id" id="set_sim_id" value="null">   
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                {{--  Model Body End   --}}
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -356,9 +404,10 @@
       if(get_ram_rom_id == null){
         all_next_step = false;
         alert("Please Select RAM | ROM ");
-
       }else{
         all_next_step = true;
+        document.getElementById("set_ram_rom_id").value = get_ram_rom_id;
+
       }
 }
 
@@ -369,6 +418,8 @@
 
       }else{
         all_next_step = true;
+        document.getElementById("set_sim_id").value = get_sim_id;
+
       }
     }
      

@@ -261,3 +261,10 @@ Route::get('/sell/get_value/{category}/{brand}/{product}','WebsiteMaster@single_
 
 
 Route::post('/sell/get_value','WebsiteMaster@get_val')->name('get_val');
+
+Route::any('/sell/get_exact_value/place_request/{category}/{brand}/{product}','WebsiteMaster@get_more_info_send_sms')->name('get_more_info_send_sms');
+
+
+Route::post("sell/mobile/order/success",'WebsiteMaster@mobile_order_success')->name('mobile_order_success');
+
+Route::any("placed/sell/order/success",'WebsiteMaster@successfully_place_order')->name('successfully_place_order');
