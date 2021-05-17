@@ -470,6 +470,141 @@ public function successfully_place_order(){
 
 
 
+//    Mobile Category Latest Orders - Admin Panel 
+
+public function mobile_category_latest_order(){
+
+
+    $mobile_category_latest_orders = DB::table('orders')->where('category_type','mobile_category')->orderBy('id', 'DESC')->get();
+
+    $data = [
+        'mobile_category_latest_orders' => $mobile_category_latest_orders,
+    ];
+
+
+    return view("dashboard.order.mobile.all",compact('data'));
+
+}
+
+
+
+// Generic Update Order Status 
+
+public function generic_update_order_status(Request $request){
+
+    $status = $request->order_status_value;
+
+             if($status == 0){
+                return redirect()->back();
+
+             }
+         $order_id = $request->order_id;
+         $phone_number = $request->phone_number;
+         $status_meaning = $this->order_status_meaning($status);
+
+         $message = "Update From Live Link BD, Order ID = ".$order_id.". Order Status Updated.Your Order is ".$status_meaning." Contact 24/7 for Help : +8801857126452";
+
+     $this->smsOrderStatusUpdate($phone_number,$message);
+    //    echo $sms_status;
+    //    echo "</br> Order ID  ".$order_id;
+    //    echo "</br> Phone Number ".$phone_number;
+    //    echo "</br> Status ".$status;
+    //    echo "</br> Status  ".$status;
+    //    var_dump($status);
+    //    die;
+         
+        // Update Orders Info based on Order ID 
+        DB::table('orders')
+        ->where('id', $order_id)
+        ->update([
+            'status' => $status,
+        ]);
+        
+        Session::flash('message', 'Update Successfully'); 
+
+        return redirect()->back();
+
+}
+
+
+
+
+
+
+
+
+
+public function order_status_meaning($status){
+    $status_meaning = "";
+
+         switch ($status) {
+            case 1:
+                $status_meaning = "Processing";
+                break;
+            
+            case 2:
+                $status_meaning = "Success";
+                break;
+                
+            case 3:
+                $status_meaning = "Cancel";
+                break;
+            
+                default:
+                $status_meaning = "";
+                 break;
+         }
+
+         return $status_meaning;
+}
+
+
+
+
+
+
+
+
+
+
+
+public function smsOrderStatusUpdate($phone_number,$message){
+
+// Twilio::message('8801816073636', $code);
+    // to  8801857126452
+    //  ar  8801767086814
+
+
+    $url = "http://66.45.237.70/api.php";
+
+    // $number="8801857126452";
+    // $text="Hello Dear, Customer . Your OPT  Code ".$code;
+
+    
+    $data= array(
+    'username'=>"01857126452",
+    'password'=>"2RVXW48F",
+    // 
+    'number'=>"$phone_number",
+    'message'=>"$message"
+    );
+
+
+    $ch = curl_init(); // Initialize cURL
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $smsresult = curl_exec($ch);
+    $p = explode("|",$smsresult);
+    $sendstatus = $p[0];
+    return $sendstatus;
+
+}
+
+
+
+
+
 
 public function sendSms($number,$code){
   

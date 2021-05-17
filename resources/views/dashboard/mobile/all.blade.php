@@ -108,7 +108,7 @@
 
                           {{-- Check Seller or Not  --}}
                             <a href="{{route('admin.mobileCategory_edit',$mobileCategory->id)}}"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="mobileCategory Edit"></i></a>
-                            <a href="{{route('admin.mobileCategory_show',$mobileCategory->id)}}" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
+                            <a href="{{route('admin.mobileCategory_show',$mobileCategory->id)}}" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title=" View"></i></a>
                             <a href="{{ route('admin.mobileCategory_destroy',$mobileCategory->id) }}" onclick="return confirm('Are You Sure to Delete?')" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
                         </div>
                       </td>

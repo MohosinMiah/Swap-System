@@ -103,6 +103,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.mobileCategory_create') }}">Add New </a>
                         <a class="collapse-item" href="{{ route('admin.mobileCategory_all') }}">All Mobile </a>
+                        <a class="collapse-item" href="{{ route('admin.mobileCategory_latest_order') }}">Latest Orders </a>
                     </div> 
 
                   </div>

@@ -19,58 +19,159 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
+              {{-- Display Error Message  --}}
+              <div class="row">
+                <div class="col-md-12">
+
+                  {{-- Display Error Message  --}}
+                  @include('admin.error.error')
+                
+                </div>
+              </div>
+
         
-                <h1 class="text-center">All Customers</h1>
+                <h1 class="text-center">Only New Orders From All Category</h1>
         <!-- Content Row -->
             <div class="row">
                 <div class="col-md-12">
     
-                 <table id="example" class="display">
-                  <thead>
-                      <tr>
-                          <th>ID</th>
-                          <th>Name</th>
-                          <th>Card No</th>
-                          <th>Phone</th>
-                          <th> Action </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                     @foreach ($customers as $customer)
-                         
-                    
-                      <tr>
-                          <td>{{$customer->id}}</td>
-                          <td>{{$customer->name}}</td>
-                          <td>{{$customer->card_number}}</td>
-                          <td>{{$customer->phone}}</td>
-                          <td>
-                            <div class="action">
-
-                                       {{-- Check Seller or Not  --}}
-                             @if(Session::get('seller_is_login'))
-                                <a href="{{route('seller.customer_editseller_seller_edit',$customer->id)}}"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="customer Edit"></i></a>
-                             @endif
-                             
-                                <a href="{{route('seller.customer_viewseller_seller_show',$customer->id)}}" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
-                                <a href="{{ route('seller.customer_destroyseller_seller_destroy',$customer->id) }}" onclick="return confirm('Are You Sure to Delete?')" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
-                            </div>
+                  <table id="example" class="display">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Model Name</th>
+                            <th>Category</th>
+                            <thCustomer Num.</th>
+                            <th>Date</th>
+                            <th>Brand</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Short Description</th>
+                            <th>Product Image</th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($data['mobile_category_latest_orders'] as $mobile_orders)
+                      
+                       <?php 
+                       $product = DB::table('mobile_categories')->where('id',$mobile_orders->product_id)->first();
+                       $brand = DB::table('brands')->where('id',$product->brand_id)->first();
+                       
+                       $class_name = "#e645251a";
+                       $status = "New";
+                       switch ($mobile_orders->status) {
+      
+                        case 1:
+                            $class_name = "#afb7c329";
+                            $status = "Working";
+      
+                            break;
+                        
+                        case 2:
+                            $status = "Done";
+                            $class_name = "#00800042";
+                            break;
+                            
+                        case 3:
+                            $status = "Canceled";
+                            $class_name = "#c3ba110a";
+                            break;
+                        
+                        default:
+                        $status = "New";
+                        $class_name = "#e645251a";
+                            break;
+      
+                     }
+      
+                       ?>
+                      
+                        <tr style="background-color: {{  $class_name }}">
+                           <td>{{$mobile_orders->id}}</td>
+                           <td>
+                             <a href="{{route('admin.mobileCategory_show',$product->id)}}" class="text-success" target="__blank" data-toggle="tooltip" data-placement="top" title="Product Details"> {{ $product->mobile_model }}</a>
+                            </td>
+                            <th>Mobile</th>
+                            <td>{{ $mobile_orders->phone_number }}</td>
+                            <td>{{ $brand->name }}</td>
+                            <td>
+                              <?php 
+                              $mytime = Carbon\Carbon::now();
+                              $start = date('Y-m-d',strtotime($mobile_orders->created_at));
+                              $end = strtotime(date('Y-m-d'));
+      
+                              ?>
+                            {{ "(Y-M-D)"}}
+                            <br>
+                              {{date('Y-m-d',strtotime($mobile_orders->created_at)) }}
+                            
+                            </td>
+                            <td>{{ $status }}</td>
+                            <td>
+                            <?php 
+                            $ram_rom_array = explode(',', $product->ram_rom);
+                            $sim_array = explode(',', $product->sim);
+      
+                            $specificationcamera_array = explode(',',$product->specificationcamera);
+                            $specificationprocessor_array = explode(',',$product->specificationprocessor);
+                            ?>
+                            <h5>Variant</h5>
+                            <p>RAM | ROM : @foreach ($ram_rom_array as $ram_rom )
+                              <span class="label">{{ $ram_rom }} </span>
+                            @endforeach</p>
+                            <p>SIM : @foreach ($sim_array as $sim )
+                              <span class="label"> {{ $sim }} </span>
+                            @endforeach</p>
+                            <hr>
+                            <h5>Specifications</h5>
+                            <p>Camera : @foreach ($specificationcamera_array as $specificationcamera )
+                              <span class="label"> {{ $specificationcamera }} </span>
+                            @endforeach</p>
+                            <p>Processor : @foreach ($specificationprocessor_array as $specificationprocessor )
+                              <span class="label"> {{ $specificationprocessor }} </span>
+                            @endforeach</
                           </td>
-                      </tr>
-                 
-                      @endforeach
-                 
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                        <th>ID</th>
-                          <th>Name</th>
-                          <th>Card No</th>
-                          <th>Phone</th>
-                          <th> Action </th>
+                           <td>
+                            <img src="{{url('/images/'.$product->image)}}" alt="{{ $product->mobile_model }}" width="320" height="250">
+                           </td>
+                           <td>
+             
+                           <form action="{{ route('admin.generic_update_order_status') }}" method="POST">
+                             @csrf
+                            <select name="order_status_value" class="form-select"  aria-label="Default select example" required>
+                              <option value="0">ACTION</option>
+                              <option value="1" class="text-info" @if ($mobile_orders->status == 1) selected @endif>Processing</option>
+                              <option value="2" class="text-success" @if ($mobile_orders->status == 2) selected @endif>Success</option>
+                              <option value="3" class="text-danger" @if ($mobile_orders->status == 3) selected @endif>Cancel</option>
+                            </select>
+                            <input type="hidden" name="order_id" value="{{ $mobile_orders->id}}">
+                            <input type="hidden" name="phone_number" value="{{ $mobile_orders->phone_number }}">
+                            <button type="submit" id="update_order_status" >Update</button>
+      
+                           </form>
+                            </td>
+                        </tr>
+                     <span style="margin-top: 5px"></span>
+                          @endforeach 
+                   
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                            <th>ID</th>
+                            <th>Model Name</th>
+                            <th>Category</th>
+                            <thCustomer Num.</th>
+                            <th>Date</th>
+                            <th>Brand</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Short Description</th>
+                            <th>Product Image</th>
+                            <th> Action </th>
                     </tr>
-                  </tfoot>
-              </table>
+                    </tfoot>
+                </table>
                 </div>
     
         </div>

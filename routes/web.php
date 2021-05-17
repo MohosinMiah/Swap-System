@@ -119,6 +119,11 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
         
         Route::get('/mobileCategory/delete/{id}', [ 'uses' => 'MobileCategoryController@destroy'])->name('mobileCategory_destroy');
 
+        //    Mobile Category Orders 
+
+        Route::get('/mobileCategory/latest/orders','MobileCategoryMaster@mobile_category_latest_order')->name('mobileCategory_latest_order');
+
+        Route::post('/update/order/status','MobileCategoryMaster@generic_update_order_status')->name('generic_update_order_status');
 
 
     // Seller Settings Route    **********************

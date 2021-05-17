@@ -134,14 +134,24 @@ class AdminController extends Controller
 
       
          // Admin Login Check 
-         if(!Session::get('admin_is_login')){   
-            return redirect()->route('admin.loginadmin_login');
-         }
-
-         $customers = Customer::orderBy('created_at', 'desc')->get();
+        //  if(!Session::get('admin_is_login')){   
+        //     return redirect()->route('admin.loginadmin_login');
+        //  }
 
 
-        return view('dashboard.main.main',compact('customers'));
+            
+    
+        $mobile_category_latest_orders = DB::table('orders')->where('status',0)->orderBy('id', 'DESC')->get();
+
+
+       
+
+         $data = [
+             'mobile_category_latest_orders' => $mobile_category_latest_orders
+         ];
+         Session::flash('message', 'Update Successfully'); 
+
+        return view('dashboard.main.main',compact('data'));
 
       
 

@@ -42,11 +42,11 @@
             <p>Have All Right (Supper Access)</p>
           </div>
 
-          <div>
+          {{--  <div>
             <i class="fa fa-user" style="font-size:55px" data-toggle="tooltip" data-placement="top" title="Sellers Login"></i>
             <a href="{{ route('seller.loginseller_login') }}"> <h3>Seller Login</h3> </a>
             <p>Login for Manage Products</p>
-          </div>
+          </div>  --}}
 
 
         </div>
