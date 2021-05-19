@@ -16,6 +16,18 @@
 
 @section('main')
 <div class="row">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ Str::slug($data['category_name']) }}</li>
+      </ol>
+    </nav>
+    <h2 class="text-center">Select Your Brand</h2>
+  
+<br>
+
+  </div>
 
   @foreach ($data['brands'] as $brand )
   

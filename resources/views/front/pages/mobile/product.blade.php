@@ -152,11 +152,10 @@
   @stop
 
 
-
 @section('hero')
 <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Apple iPhone XS Max</h1>
+      <h1 class="jumbotron-heading"> {{ ucfirst($data['mobiler_category_product']->mobile_model) }} </h1>
      
     </div>
   </section> 
@@ -168,6 +167,23 @@
 
 <div class="container">
   <div class="row">
+
+
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item "><a href="{{ route('single_category',Str::slug($data['category_name'])) }}">{{ Str::slug($data['category_name']) }}</a></li>
+          <li class="breadcrumb-item " aria-current="page"><a href="{{ route('single_brand',[Str::slug($data['category_name']),Str::slug($data['brand_name'])]) }}">{{ Str::slug($data['brand_name']) }}</a></li>
+          <li class="breadcrumb-item " aria-current="page">{{ $data['mobiler_category_product']->mobile_model }}</li> 
+        </ol>
+      </nav>
+    
+  <br>
+  
+    </div>
+
+
 
     <div class="col-md-6">
       <h1>{{ $data['mobiler_category_product']->mobile_model }}</h1>

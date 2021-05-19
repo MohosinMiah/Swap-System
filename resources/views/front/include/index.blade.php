@@ -52,8 +52,11 @@
 
 @section('main')
 <div class="row">
- 
+<div class="col-md-12">
+  <h1 class="text-center">All Category</h1>
+<br>
 
+</div>
   @foreach ($data['categories'] as $category)
 
     <div class="col-md-4">

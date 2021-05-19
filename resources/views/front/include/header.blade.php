@@ -31,14 +31,14 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              <p class="text-muted">Live Link BD is the best platform for sell your electrical product.Because We provide best price.Promising for best experience to the sellers and buyers</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Contact</h4>
               <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+                <li><a href="#" class="text-white">Back To Main</a></li>
+                <li><a href="#" class="text-white">Join Facebook</a></li>
+                <li><a tel="+8801857126452" class="text-white">Call Us : 01857126452</a></li>
               </ul>
             </div>
           </div>

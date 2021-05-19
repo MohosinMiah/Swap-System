@@ -3,7 +3,7 @@
       <p class="float-right">
         <a href="#">Back to top</a>
       </p>
-      <p>Live Link BD is the best platform for Swap your Electrical Products</p>
+      <p>All Right Reserved &copy; <a href="#">Live Link BD</a></p>
     </div>
   </footer>
 

@@ -2,13 +2,12 @@
 
 
 
+
 @section('hero')
 <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Popular Product Name(Ex , Iphone 11)</h1>
-      <p>
-        <a href="#" class="btn btn-secondary my-2">Exchange Now</a>
-      </p>
+      <h1 class="jumbotron-heading"> {{ ucfirst($data['brand_name']) }} </h1>
+     
     </div>
   </section> 
 @stop
@@ -17,7 +16,22 @@
 
 @section('main')
 <div class="row">
- 
+   
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item "><a href="{{ route('single_category',Str::slug($data['category_name'])) }}">{{ Str::slug($data['category_name']) }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($data['brand_name']) }}</li>
+      </ol>
+    </nav>
+    <h2 class="text-center">Select Your Brand</h2>
+  
+<br>
+
+  </div>
+   
+
   @foreach ($data['products'] as $product)
     
 
