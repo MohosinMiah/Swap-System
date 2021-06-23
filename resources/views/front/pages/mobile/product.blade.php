@@ -15,18 +15,18 @@
     text-decoration: none;
     list-style: none;
     color: #212529;
-    border: 1px aliceblue;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 10px;
-  }
 
+  }
 
   .specification-list-item {
-    border-right: 1px solid #000;
-    float:left;
-    padding: 4px;
-
-  }
+    border-right: 1px solid #a79f9f;
+    float: left;
+    padding-right: 14px;
+    padding-left: 6px;
+}
 
 
    .specification-list, .variant-list-ramRom,.variant-list-sim {
@@ -44,6 +44,7 @@
       padding: 6px;
 
     }
+
     .sim-active {
       background-color: #adafb2;
       opacity: 0.9;
@@ -312,11 +313,7 @@
       @endif
 
 
-      <li class="specification-list-item" >
-        <span class="specific-option">Processor</span>
-        <br>
-        <span class="specific-content">{{ $data['mobiler_category_product']->specificationprocessor }}</span>
-      </li>
+    
     </ul> 
 
  
@@ -357,7 +354,7 @@
                    @csrf
                   <div class="form-group">
                     <label for="phone_number">Phone Number</label>
-                    <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{11}"  class="form-control"  aria-describedby="phoneHelp" placeholder="Phone Number">
+                    <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{11}"  class="form-control"  aria-describedby="phoneHelp" placeholder="Phone Number" required>
                     <small id="phoneHelp" class="form-text text-muted">We ll never share your phone number with anyone else.</small>
                   </div>
                   <input type="hidden" name="get_category_id" value="{{  $data['mobiler_category_product']->category_id }}">

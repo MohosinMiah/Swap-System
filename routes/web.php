@@ -121,6 +121,8 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
         //    Mobile Category Orders 
 
+        Route::get('/mobile_order_details/{id}', 'MobileCategoryMaster@mobile_order_details')->name('mobile_order_details');
+
         Route::get('/mobileCategory/latest/orders','MobileCategoryMaster@mobile_category_latest_order')->name('mobileCategory_latest_order');
 
         Route::post('/update/order/status','MobileCategoryMaster@generic_update_order_status')->name('generic_update_order_status');

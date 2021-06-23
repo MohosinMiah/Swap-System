@@ -79,7 +79,6 @@
                  <?php 
                  $product = DB::table('mobile_categories')->where('id',$mobile_orders->product_id)->first();
                  $brand = DB::table('brands')->where('id',$product->brand_id)->first();
-                 $order =  DB::table('order_mobile_categories')->where('id',$mobile_orders->temporary_order_id)->first();
                  
                  $class_name = "#e645251a";
                  $status = "New";
@@ -113,7 +112,7 @@
                   <tr style="background-color: {{  $class_name }}">
                      <td>{{$mobile_orders->id}}</td>
                      <td>
-                       <a href="{{route('admin.mobile_order_details',$mobile_orders->id)}}" class="text-success" target="__blank" data-toggle="tooltip" data-placement="top" title="Order Details"> {{ $product->mobile_model }}</a>
+                       <a href="{{route('admin.mobile_order_details',$mobile_orders->id)}}" class="text-success" target="__blank" data-toggle="tooltip" data-placement="top" title="Product Details"> {{ $product->mobile_model }}</a>
                       </td>
                       <td>{{ $mobile_orders->phone_number }}</td>
                       <td>{{ $brand->name }}</td>
@@ -139,18 +138,12 @@
                       $specificationprocessor_array = explode(',',$product->specificationprocessor);
                       ?>
                       <h5>Variant</h5>
-
-                      @if($order->ram_rom)
-                      <p>RAM | ROM : 
-                        <span class="label">{{ $order->ram_rom }} </span>
-                        </p>
-                      @endif
-                        @if($order->sim)
-                      <p>SIM : 
-                        <span class="label"> {{ $order->sim }}  </span>
-                      </p>
-                      @endif 
-
+                      <p>RAM | ROM : @foreach ($ram_rom_array as $ram_rom )
+                        <span class="label">{{ $ram_rom }} </span>
+                      @endforeach</p>
+                      <p>SIM : @foreach ($sim_array as $sim )
+                        <span class="label"> {{ $sim }} </span>
+                      @endforeach</p>
                       <hr>
                       <h5>Specifications</h5>
                       <p>Camera : @foreach ($specificationcamera_array as $specificationcamera )

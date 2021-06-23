@@ -102,7 +102,7 @@ $('#four').click(function(){
 
     @include('front.error.error')
       {{--  Model Body Start  --}}
-      <form method="POST" action="{{ route('mobile_order_success' ) }}">
+      <form method="POST" action="{{ route('mobile_order_success' ) }}"  enctype="multipart/form-data"  onsubmit="check_otp_value_form()">
         @csrf
  
         <input type="hidden" name="temporary_order_id" value="{{ $data['temporary_order_id'] }}" >
@@ -113,44 +113,105 @@ $('#four').click(function(){
 
         <div class="form-group">
           <label for="otp_code">OTP Code</label>
-          <input type="tel" id="otp_code" name="otp_code" pattern="[0-9]{4}"  onchange="check_otp_value()"  class="form-control"  aria-describedby="otp_codeHelp" placeholder="OTP Code">
+          <input type="tel" id="otp_code" name="otp_code" pattern="[0-9]{4}"  onchange="check_otp_value()"  class="form-control"  aria-describedby="otp_codeHelp" placeholder="OTP Code" required>
           <small id="phoneHelp" class="form-text text-muted">We send <strong>OTP Code  {{ $data['phone_number'] }} </strong> Number,Pls Check</small>
         </div>
 
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" name="one" id="one" value="Yes">
-          <label class="form-check-label" for="one">ফোনের সাথে IEMI matched বক্স এবং চার্জার আছে? </label>
-        </div>
+          {{-- <input class="form-check-input" type="checkbox" name="one" id="one" value="Yes"> --}}
+          <label class="form-check-label" for="one">ফোনের সাথে IEMI matched বক্স এবং চার্জার আছে? *</label>
+                      <br>
+          <label class="radio-inline">
+            <input type="radio" name="one" value="YES"> YES
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="one" value="NO"> NO
+          </label>
 
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="two" name="two" value="Yes">
-          <label class="form-check-label" for="two">ফোনে কোন প্রকার দাগ অথবা কোন ডেন্ট আছে? </label>
-          <br>
-          <label for="two_short_note">Short Note</label>
-
-          <input type="text" id="two_short_note" name="two_short_note" class="short_note_style" style="display: none">
-        </div>
-
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="three" value="Yes">
-          <label class="form-check-label" for="three">ফোনের কোন পার্টস চেঞ্জ করা হয়েছে অথবা খোলা হয়েছে? </label>
-          <br>
-          <label for="three_short_note">Short Note</label>
-
-          <input type="text" id="three_short_note" name="three_short_note" class="short_note_style" style="display: none">
 
         </div>
 
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="four">
-          <label class="form-check-label" for="four">ফোনে কোন ধরনের সমস্যা আছে? (নেটওয়ার্ক সিগ্যানাল এবং হ্যার্ডওয়্যার)  </label>
+          {{-- <input class="form-check-input" type="checkbox" id="two" name="two" value="Yes"> --}}
+          <label class="form-check-label" for="two">ফোনে কোন প্রকার দাগ অথবা কোন ডেন্ট আছে? *</label>
           <br>
-          <label for="four_short_note">Short Note</label>
+          <label class="radio-inline">
+            <input type="radio" name="two" value="Screatch"> Screatch
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="two" value="Dent"> Dent
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="two" value="NO"> NO
+          </label>
 
-          <input type="text" id="four_short_note" name="four_short_note"  class="short_note_style" style="display: none">
 
         </div>
 
+        <div class="form-check form-switch">
+          {{-- <input class="form-check-input" type="checkbox" id="three" value="Yes"> --}}
+          <label class="form-check-label" for="three">ফোনের কোন পার্টস চেঞ্জ করা হয়েছে অথবা খোলা হয়েছে? *</label>
+          <br>
+          <label class="radio-inline">
+            <input type="radio" name="three" value="YES"> YES
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="three" value="NO"> NO
+          </label>
+
+
+
+        </div>
+
+        <div class="form-check form-switch">
+          {{-- <input class="form-check-input" type="checkbox" id="four"> --}}
+          <label class="form-check-label" for="four">ফোনে কোন ধরনের সমস্যা আছে? (নেটওয়ার্ক সিগ্যানাল এবং হ্যার্ডওয়্যার)  *</label>
+          <br>
+          <label class="radio-inline">
+            <input type="radio" name="four" value="YES"> YES
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="four" value="NO"> NO
+          </label>
+
+        </div>
+
+
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="front_phone_image"> Front Image *</label>
+          <br>
+            <input type="file" class="form-control" name="front_phone_image" required> 
+        </div>
+
+
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="back_phone_image"> Back Image *</label>
+          <br>
+            <input type="file" class="form-control" name="back_phone_image" required> 
+        </div>
+
+    <hr>
+    
+    <div class="form-group">
+      <label for="customer_division">  Select Division *</label>
+      <select class="form-control" name="customer_division" id="customer_division" required>
+        <option>Select Your Division</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Chittagong">Chittagong</option>
+        <option  value="Dhaka">Dhaka</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Mymensingh">Mymensingh</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Sylhet">Sylhet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="customer_address">Customer Address *</label>
+      <textarea class="form-control" name="customer_address" id="customer_address" rows="3" required></textarea>
+    </div>
+  
   	
       <br>
 
@@ -171,19 +232,46 @@ $('#four').click(function(){
 <script>
   
 function check_otp_value(){
+
   var actual_otp_value = document.getElementById('sended_otp_code').value;
+
   var inserted_otp_value =  document.getElementById('otp_code').value;
 
-
   console.log(actual_otp_value);
+
   console.log(inserted_otp_value);
   
   if(actual_otp_value != inserted_otp_value){
+
     alert("Please Enter Write OTP Code.Check your Phone Number Pls");
 
   }
 
+
 }
+
+  
+function check_otp_value_form(){
+
+  var actual_otp_value = document.getElementById('sended_otp_code').value;
+
+  var inserted_otp_value =  document.getElementById('otp_code').value;
+
+  console.log(actual_otp_value);
+
+  console.log(inserted_otp_value);
+  
+  if(actual_otp_value != inserted_otp_value){
+
+    alert("Please Enter Write OTP Code.Check your Phone Number Pls");
+    event.preventDefault();
+
+  }
+
+
+}
+
+
 
 </script>
   @stop

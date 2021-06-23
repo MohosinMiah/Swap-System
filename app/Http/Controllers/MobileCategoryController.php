@@ -136,6 +136,8 @@ class MobileCategoryController extends Controller
         /** 
          * Check File is uploaded or not  time()."_".
          */
+
+
         if ($image) {
             $img_name = time()."_".$image->getClientOriginalName();
 

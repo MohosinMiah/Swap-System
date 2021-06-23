@@ -2,7 +2,7 @@
 @extends('dashboard.index')
 
 
-@section('title') View Product @stop
+@section('title') Order Details @stop
 
 @section("header_style")
 
@@ -71,7 +71,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
 
-          <h2 class="text-center">Mobile Category </h2>
+          <h2 class="text-center"> Order Details </h2>
                   <!-- Content Row -->
             <div class="card">
                 <div class="card-body">
@@ -84,7 +84,7 @@
                   <select class="form-control" id="category_id" name="category_id" readonly>                         
                    
 
-                    <option value="{{ $mobileCategory->category->id }}" > {{ $mobileCategory->category->name }} </option>
+                    <option> {{ $data['mobile_category_order_detail']->category_type }} </option>
 
             
                     
@@ -97,7 +97,7 @@
                   <select class="form-control" id="brand" name="brand_id" readonly>
                          
 
-                    <option value="{{ $mobileCategory->brand->id }}" >{{ $mobileCategory->brand->name }}</option>
+                    <option value="{{ $data['brand']->id }}" >{{ $data['brand']->name }}</option>
 
                     
            
@@ -107,14 +107,14 @@
                 
                 <div class="form-group">
                   <label for="mobile_model">Model Name *</label>
-                  <input type="text" class="form-control" id="mobile_model" name="mobile_model" value="{{ $mobileCategory->mobile_model }}" readonly>
+                  <input type="text" class="form-control" id="mobile_model" name="mobile_model" value="{{ $data['product']->mobile_model }}" readonly>
                 </div>
 
 
                 <div class="form-group">
                   <label for="name"> Image *</label>
                   {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
-                  <img src="{{url('/images/'.$mobileCategory->image)}}" alt="Mobile Model Image" width="400" height="300">
+                  <img src="{{url('/images/'.$data['product']->image)}}" alt="Mobile Model Image" width="400" height="300">
 
                 </div>
 
@@ -123,76 +123,96 @@
     
             <div class="form-group">
               <label for="ram_rom">RAM | ROM *</label>
-              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" value="{{ $mobileCategory->ram_rom }}"  readonly>
+              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" value="{{ $data['mobile_category_order_detail']->ram_rom }}"  readonly>
             </div>
 
             <div class="form-group">
               <label for="sim">SIM *</label>
-              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" value="{{ $mobileCategory->sim }}"   readonly>
+              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" value="{{ $data['mobile_category_order_detail']->sim }}"   readonly>
             </div>
 
          
-            {{--  <div class="form-group">
-              <label for="camera">Camera *</label>
-              <input type="text" class="form-control" id="camera" name="camera" data-role="tagsinput"   readonly>
-            </div>
-
-            <div class="form-group">
-              <label for="processor">Processor *</label>
-              <input type="text" class="form-control" id="processor" name="processor" data-role="tagsinput"   readonly>
-            </div>
-
-            <div class="form-group">
-              <label for="battery">Battery *</label>
-              <input type="text" class="form-control" id="battery" name="battery" data-role="tagsinput"   readonly>
-            </div>  --}}
+           
 
             <hr>
             <h3 class="text-center">Prices Upto</h3>
             <div class="form-group">
               <label for="prices">Prices *</label>
-              <input type="text" class="form-control" id="prices" name="prices" data-role="tagsinput" value="{{ $mobileCategory->prices }}"   readonly>
+              <input type="text" class="form-control" id="prices" name="prices" data-role="tagsinput" value="{{ $data['mobile_category_order_detail']->estimated_price }}"   readonly>
             </div>
             <hr>
             <h3 class="text-center">Specifications</h3>
      
               <div class="form-group">
                <label for="specificationram_rom">RAM | ROM *</label>
-               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput" value="{{ $mobileCategory->specificationram_rom }}" readonly>
+               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput" value="{{ $data['product']->specificationram_rom }}" readonly>
              </div>
     
              <div class="form-group">
                <label for="specificationsim">SIM *</label>
-               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $mobileCategory->specificationsim }}"  readonly>
+               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $data['product']->specificationsim }}"  readonly>
              </div>
 
              <div class="form-group">
                <label for="specificationcamera">Camera *</label>
-               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput"  value="{{ $mobileCategory->specificationcamera }}" readonly>
+               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput"  value="{{ $data['product']->specificationcamera }}" readonly>
              </div>
  
              <div class="form-group">
                <label for="specificationprocessor">Processor *</label>
-               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" value="{{ $mobileCategory->specificationprocessor }}"  readonly>
+               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" value="{{ $data['product']->specificationprocessor }}"  readonly>
              </div>
  
              <div class="form-group">
                <label for="specificationbattery">Battery *</label>
-               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $mobileCategory->specificationbattery }}"  readonly>
+               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $data['product']->specificationbattery }}"  readonly>
              </div>
              
-             <div class="form-group">
-              <label for="specificationbattery">Battery *</label>
-              <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $mobileCategory->specificationbattery }}"  readonly>
+             
+
+
+            <br>
+            <hr>
+            <h2 class="text-center">More Details About Order</h2>
+            <hr>
+            <br>
+
+            <div class="form-group">
+              <label for="name"> Customer Phone Front Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->front_phone_image)}}" alt="Mobile Front Phone Image" width="400" height="300">
+
             </div>
 
+            <div class="form-group">
+              <label for="name"> Customer Phone Back Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->back_phone_image)}}" alt="Mobile Back Phone Image" width="400" height="300">
+
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">Customer Phone Number *</label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->phone_number }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">Customer Division *</label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->customer_division }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">Customer Address *</label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->customer_address }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">Order Created AT *</label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->created_at }}"  readonly>
+            </div>
 
             
-
-
-
-
-             <a class="btn btn-primary" href="{{ route('admin.mobileCategory_all') }}">Back To List</a>
+             <a class="btn btn-primary" href="{{ route('admin.mobileCategory_latest_order') }}" >Back To List</a>
 
             </form>
 

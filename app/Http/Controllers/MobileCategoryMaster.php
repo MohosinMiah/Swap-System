@@ -325,7 +325,7 @@ $estimated_price = $prices_array[$price_id];
     // send OTP code 
     $code = rand(1000,9999);
 
-    $this->sendSms($phone_number,$code);
+     $this->sendSms($phone_number,$code);    
 
 
   
@@ -394,13 +394,60 @@ public function mobile_order_success(Request $request) {
   
     $otp_code = $request->otp_code;
   
-    $one = $request->one;
+    $ex_emi_box_charger = $request->one;
   
-    $two_short_note = $request->two_short_note;
+    $ex_phone_problem = $request->two;
   
-    $three_short_note = $request->three_short_note;
+    $ex_parts_change = $request->three;
   
-    $four_short_note = $request->four_short_note;
+    $ex_issue_network = $request->four;
+
+
+
+            /** 
+         * Check File is uploaded or not  time()."_".
+         */
+
+    $front_phone_image = $request->file('front_phone_image');
+
+        
+        if ($front_phone_image) {
+
+            $img_name_front = time()."_".$front_phone_image->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $front_phone_image->move($destinationPathOne, $img_name_front);  
+        }
+
+
+
+
+
+                /** 
+         * Check File is uploaded or not  time()."_".
+         */
+
+        $back_phone_image = $request->file('back_phone_image');
+
+        
+        if ($back_phone_image) {
+            
+            $img_name_back = time()."_".$back_phone_image->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $back_phone_image->move($destinationPathOne, $img_name_back);  
+        }
+
+
+
+
+
+    $customer_division = $request->customer_division;
+
+    $customer_address = $request->customer_address;
+    
   
 //   Check OTP based on Mobile Number (Latest Sended OTP) 
    
@@ -429,13 +476,20 @@ public function mobile_order_success(Request $request) {
     ->where('id', $temporary_order_id)
     ->update([
         'order_id' => $order_id,
-        'ex_emi_box_charger' => $one,
-        'ex_phone_problem' => $two_short_note,
-        'ex_parts_change' => $three_short_note,
-        'ex_issue_network' => $four_short_note,
+        'ex_emi_box_charger' => $ex_emi_box_charger,
+        'ex_phone_problem' => $ex_phone_problem,
+        'ex_parts_change' => $ex_parts_change,
+        'ex_issue_network' => $ex_issue_network,
+        'front_phone_image' => $img_name_front,
+        'back_phone_image' => $img_name_back,
+        'customer_division' => $customer_division,
+        'customer_address' => $customer_address,
         'category_type' => $category_type,
     
     ]);
+    $message = "Welcome From Live Link BD. Your Order Place Successfully. We will contact with you soon.";
+    $this->smsOrderStatusUpdate($phone_number,$message);
+
 
     return redirect()->route('successfully_place_order');
 
@@ -455,6 +509,27 @@ public function mobile_order_success(Request $request) {
 
 
 
+
+public function mobile_order_details($id){
+
+    $mobile_category_order = DB::table('orders')->where('id',$id)->first();
+
+    $mobile_category_order_detail = DB::table('order_mobile_categories')->where('id',$mobile_category_order->temporary_order_id)->first();
+
+    $product = DB::table('mobile_categories')->where('id',$mobile_category_order_detail->product_id)->first();
+    $brand = DB::table('brands')->where('id',$product->brand_id)->first();
+
+
+    $data = [
+        'mobile_category_order_detail' => $mobile_category_order_detail,
+        'product' => $product,
+        'brand' => $brand,
+
+    ];
+    Session::flash('message', 'Update Successfully'); 
+
+   return view('dashboard.order.mobile.details',compact('data'));
+}
 
 
 
