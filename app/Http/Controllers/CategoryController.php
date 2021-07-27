@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Session;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
@@ -11,6 +12,9 @@ class CategoryController extends Controller
 {
 
     public $table = "categories";
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +22,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        
+
+       // Admin Login Check 
+       if(!Session::get('admin_is_login')){   
+        return redirect()->route('admin.loginadmin_login');
+     }
+
+
         $categories = Category::all(); 
 
         return view('dashboard.category.all',compact('categories'));
@@ -31,6 +43,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        // Admin Login Check 
+        if(!Session::get('admin_is_login')){   
+            return redirect()->route('admin.loginadmin_login');
+         }
+
         return view('dashboard.category.create');
 
     }
@@ -112,6 +129,11 @@ class CategoryController extends Controller
      */
     public function show( $id)
     {
+        // Admin Login Check 
+        if(!Session::get('admin_is_login')){   
+            return redirect()->route('admin.loginadmin_login');
+         }
+
         $category = Category::findOrfail($id);
         return view("dashboard.category.show",compact("category"));
     }
@@ -124,6 +146,11 @@ class CategoryController extends Controller
      */
     public function edit( $id)
     {
+        // Admin Login Check 
+        if(!Session::get('admin_is_login')){   
+            return redirect()->route('admin.loginadmin_login');
+         }
+
         $category = Category::findOrfail($id);
         return view("dashboard.category.update",compact("category"));
     }

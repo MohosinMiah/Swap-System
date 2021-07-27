@@ -54,6 +54,7 @@
 
           
         {{--  Category Setting   --}}
+        @if(Session::get('admin_is_login')) 
 
         <!-- Nav Item - Category Settings  Menu -->
         <li class="nav-item">
@@ -69,9 +70,12 @@
                 </div>
             </div>
         </li>
+        @endif
+
 
 
               {{--  Brand Setting   --}}
+              @if(Session::get('admin_is_login')) 
 
               <!-- Nav Item - Brand Settings  Menu -->
               <li class="nav-item">
@@ -87,10 +91,12 @@
                       </div>
                   </div>
               </li>
+              @endif
 
 
 
               {{--  Mobile Category Setting   --}}
+              @if(Session::get('admin_is_login')) 
 
               <!-- Nav Item - Mobile Category Settings  Menu -->
               <li class="nav-item">
@@ -109,50 +115,14 @@
                   </div>
               </li>
 
+              @endif
 
            {{--  Access For Admin   --}}
 
-        @if (Session::get('admin_is_login'))
-              
-
-           {{-- <!-- Nav Item - Seller Settings  Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSellers"
-                    aria-expanded="true" aria-controls="collapseSellers">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Seller Settings</span>
-                </a>
-                <div id="collapseSellers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('admin.seller_createadmin_seller_create') }}">Add New</a>
-                        <a class="collapse-item" href="{{ route('admin.seller_alladmin_seller_all') }}">All Seller</a>
-                    </div>
-                </div>
-            </li> --}}
-
-        @endif
+       
 
             <!-- Nav Item - Admin Settings  Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomers"
-                    aria-expanded="true" aria-controls="collapseCustomers">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Customer Settings</span>
-                </a>
-                <div id="collapseCustomers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                           Check Seller or Not  
-                                 @if(Session::get('seller_is_login'))
-                        <a class="collapse-item" href="{{ route('seller.customer_createseller_seller_create') }}">Add New</a>
-                                 @endif
-
-                        <a class="collapse-item" href="{{ route('seller.customer_allseller_seller_all') }}">All Customer</a>
-                    </div>
-                </div>
-            </li> --}}
-
-            {{--  Admin Setting   --}}
+          
 
             @if(Session::get('admin_is_login')) 
 
@@ -165,18 +135,7 @@
 
             @endif
 
-            {{--  Seller Setting   --}}
-
-            @if(Session::get('seller_is_login')) 
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('seller.seller_settingsseller_settings') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Settings</span></a>
-            </li>
-
-            @endif
+           
 
            
         </ul>

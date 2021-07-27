@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use Illuminate\Http\Request;
+use Session;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
 class BrandController extends Controller
 {
     public $table = "brands";
+
+   
+            
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +24,12 @@ class BrandController extends Controller
      */
     public function index()
     {
+        
+       // Admin Login Check 
+       if(!Session::get('admin_is_login')){   
+        return redirect()->route('admin.loginadmin_login');
+     }
+
         $brands = Brand::all(); 
 
         return view('dashboard.brand.all',compact('brands'));
@@ -31,6 +43,12 @@ class BrandController extends Controller
      */
     public function create()
     {
+        
+       // Admin Login Check 
+       if(!Session::get('admin_is_login')){   
+        return redirect()->route('admin.loginadmin_login');
+     }
+
         $categories = Category::all(); 
 
         return view('dashboard.brand.create',compact('categories'));
@@ -120,6 +138,12 @@ class BrandController extends Controller
      */
     public function show( $id)
     {
+        
+       // Admin Login Check 
+       if(!Session::get('admin_is_login')){   
+        return redirect()->route('admin.loginadmin_login');
+     }
+
         $brand = Brand::findOrfail($id);
         return view("dashboard.brand.show",compact("brand"));
     }
@@ -132,6 +156,12 @@ class BrandController extends Controller
      */
     public function edit( $id)
     {
+        
+       // Admin Login Check 
+       if(!Session::get('admin_is_login')){   
+        return redirect()->route('admin.loginadmin_login');
+     }
+     
         $brand = Brand::findOrfail($id);
         $categories = Category::all();
 

@@ -15,18 +15,18 @@
     text-decoration: none;
     list-style: none;
     color: #212529;
-    border: 1px aliceblue;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 10px;
-  }
 
+  }
 
   .specification-list-item {
-    border-right: 1px solid #000;
-    float:left;
-    padding: 4px;
-
-  }
+    border-right: 1px solid #a79f9f;
+    float: left;
+    padding-right: 14px;
+    padding-left: 6px;
+}
 
 
    .specification-list, .variant-list-ramRom,.variant-list-sim {
@@ -44,12 +44,19 @@
       padding: 6px;
 
     }
+
     .sim-active {
       background-color: #adafb2;
       opacity: 0.9;
       padding: 6px;
 
     }
+    {{--  Style Model Design   --}}
+
+    .modal{
+      margin-top: 15%;
+    }
+
 
 
 </style>
@@ -146,11 +153,10 @@
   @stop
 
 
-
 @section('hero')
 <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Apple iPhone XS Max</h1>
+      <h1 class="jumbotron-heading"> {{ ucfirst($data['mobiler_category_product']->mobile_model) }} </h1>
      
     </div>
   </section> 
@@ -162,6 +168,23 @@
 
 <div class="container">
   <div class="row">
+
+
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item "><a href="{{ route('single_category',Str::slug($data['category_name'])) }}">{{ Str::slug($data['category_name']) }}</a></li>
+          <li class="breadcrumb-item " aria-current="page"><a href="{{ route('single_brand',[Str::slug($data['category_name']),Str::slug($data['brand_name'])]) }}">{{ Str::slug($data['brand_name']) }}</a></li>
+          <li class="breadcrumb-item " aria-current="page">{{ $data['mobiler_category_product']->mobile_model }}</li> 
+        </ol>
+      </nav>
+    
+  <br>
+  
+    </div>
+
+
 
     <div class="col-md-6">
       <h1>{{ $data['mobiler_category_product']->mobile_model }}</h1>
@@ -290,11 +313,7 @@
       @endif
 
 
-      <li class="specification-list-item" >
-        <span class="specific-option">Processor</span>
-        <br>
-        <span class="specific-content">{{ $data['mobiler_category_product']->specificationprocessor }}</span>
-      </li>
+    
     </ul> 
 
  
@@ -311,14 +330,55 @@
     <div id="get_up_to" class="row" style="display: none">
       <div class="col-md-12">
         <h3 id="get_up_to_value"></h3>
+        <p id="alart_short_note" style="color:red"></p>
       </div>
+      
       <div class="col-md-12">
-        <a class="btn btn-primary" id="get_exact_value"  >Get Exact Value</a>
-        
+        {{--  <a class="btn btn-primary" id="get_exact_value" >Get Exact Value</a>  --}}
 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#get_exact_value">Get Exact Value</button>
+
+        
+        <!-- Modal -->
+        <div class="modal fade" id="get_exact_value" tabindex="-1" role="dialog" aria-labelledby="get_exact_valueLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="get_exact_valueLabel">Please enter your phone number</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               
+                 {{--  Model Body Start  --}}
+                 <form method="POST" action="{{ route('get_more_info_send_sms',[Str::slug($data['category_name']),Str::slug($data['brand_name']),Str::slug($data['mobiler_category_product']->mobile_model)] ) }}">
+                   @csrf
+                  <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{11}"  class="form-control"  aria-describedby="phoneHelp" placeholder="Phone Number" required>
+                    <small id="phoneHelp" class="form-text text-muted">We ll never share your phone number with anyone else.</small>
+                  </div>
+                  <input type="hidden" name="get_category_id" value="{{  $data['mobiler_category_product']->category_id }}">
+                  <input type="hidden" name="get_brand_id" value="{{  $data['mobiler_category_product']->brand_id }}">
+                  <input type="hidden" name="get_product_id" value="{{  $data['mobiler_category_product']->id }}">   
+                  <input type="hidden" name="set_ram_rom_id" id="set_ram_rom_id" value="null">   
+                  <input type="hidden" name="set_sim_id" id="set_sim_id" value="null">   
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                {{--  Model Body End   --}}
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch demo modal </button>
 
     </div>
 
@@ -327,28 +387,6 @@
 
     </div>
 
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -381,9 +419,10 @@
       if(get_ram_rom_id == null){
         all_next_step = false;
         alert("Please Select RAM | ROM ");
-
       }else{
         all_next_step = true;
+        document.getElementById("set_ram_rom_id").value = get_ram_rom_id;
+
       }
 }
 
@@ -394,6 +433,8 @@
 
       }else{
         all_next_step = true;
+        document.getElementById("set_sim_id").value = get_sim_id;
+
       }
     }
      
@@ -423,10 +464,12 @@
     $('#get_estimated_value').remove();
     {{--  $('#get_exact_value').append("Get Exact Value");  --}}
     $('#get_up_to_value').append('Get Up To '+data.estimated_value+" TK");
-
+    $('#alart_short_note').append("Short Note Example will put here");
  
     $("#get_up_to").css("display", "");
 
+    $('.ram_rom').css("pointer-events", "none"); 
+    $('.sim').css("pointer-events", "none"); 
     
   }  })
 }

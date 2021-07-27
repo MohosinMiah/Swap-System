@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\MobileCategory;
 use App\Category;
 use App\Brand;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
-use Session;
 
 
 class MobileCategoryMaster extends Controller
 {
 
+
+
+    
+
     // Display Swap Product Based On Category, Model , Brand and Etc    **********************
 
     public function index(){
+
+        
 
         $data = [
             'categories' => Category::all(),
@@ -238,6 +244,10 @@ class MobileCategoryMaster extends Controller
   public function get_more_info_send_sms($category, $brand, $product,Request $request){
 
         
+    $session_id = Session::getId();
+
+  
+
     $category_id = $request->get_category_id;
     $brand_id = $request->get_brand_id;
     $product_id = $request->get_product_id;
@@ -325,7 +335,7 @@ $estimated_price = $prices_array[$price_id];
     // send OTP code 
     $code = rand(1000,9999);
 
-     $this->sendSms($phone_number,$code);    
+     $this->sendSms($phone_number,$code);     
 
 
   
@@ -334,6 +344,7 @@ $estimated_price = $prices_array[$price_id];
   $temporary_order_id = DB::table('order_mobile_categories')->insertGetId([
 
     'product_id' => $product_id,
+    'session_id' => $session_id,
     'category_id' => $category_id,
     'brand_id' => $brand_id,
     'phone_number' => $phone_number,
@@ -348,9 +359,11 @@ $estimated_price = $prices_array[$price_id];
 
 
 
+
  DB::table('session_otp')->insert([
 
     'phone' => $phone_number,
+    'session_id' => $session_id,
     'otp' => $code,
     'temporary_order_id' => $temporary_order_id,
 
@@ -358,20 +371,88 @@ $estimated_price = $prices_array[$price_id];
 
 
 
- $mobiler_category_product = MobileCategory::where('id',$product_id)->first();
 
+
+    // return view('front.pages.mobile.otp',compact('data')); 
+
+    return redirect()->route('display_otp_form');
+
+
+}
+
+
+public function display_otp_form(){
+
+$session_id = Session::getId();
+
+     
+$data = DB::table('session_otp')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+
+    return view('front.pages.mobile.otp',compact("data"));
+
+}
+
+
+public function otp_verifier_check(Request $request){
+
+    $session_id = Session::getId();
+
+    $user_otp = $request->otp_code;
+     
+    $otp_data = DB::table('session_otp')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+
+    
+    if($user_otp == $otp_data->otp){
+
+         return redirect()->route('mobile_order_multi_form');
+    }else{
+        return redirect()->route('otp_error_message');
+    }
+
+    
+
+
+}
+
+
+public function otp_error_message(){
+
+    $session_id = Session::getId();
+
+     
+$data = DB::table('session_otp')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+
+
+
+    return view("front.pages.mobile.otp_error_message",compact("data"));
+
+}
+
+
+
+public function mobile_order_multi_form(){
+
+ $session_id = Session::getId();
+
+
+ // From Order Table - Mobile 
+ $order_mobile_category =  DB::table('order_mobile_categories')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+
+ // From Product Table - Base on Product ID
+ $mobiler_category_product = MobileCategory::where('id',$order_mobile_category->product_id)->first();
+
+
+
+ 
 
 // $inserted_id = DB::getPdo()->lastInsertId();
 
  $data = [
-     'temporary_order_id' => $temporary_order_id,
      'mobiler_category_product' => $mobiler_category_product,
-     'phone_number' => $phone_number,
-     'sended_otp_code' => $code,
+     'phone_number' => $order_mobile_category->phone_number,
  ];
 
-
-    return view('front.pages.mobile.sendOTP',compact('data')); 
+    return view("front.pages.mobile.mobile_order_multi_form",compact('data'));
 
 }
 
@@ -379,20 +460,50 @@ $estimated_price = $prices_array[$price_id];
 
 
 
-
-
 public function mobile_order_success(Request $request) {
 
+//  return $request->all();
 
-    $temporary_order_id = $request->temporary_order_id;
+$customer_division = $request->customer_division;
+
+$customer_address = $request->customer_address;
+
+$network_issue_short_notes = $request->network_issue_short_notes;
+
+$termandcondition = $request->termandcondition;
+
+
+
+if($termandcondition == NULL) {
+    Session::flash('message', 'You Must Select Term and Condition'); 
+    Session::flash('class_type', 'danger'); 
+    return redirect()->back();
+
+}
+
+
+
+ if($customer_division == NULL){
+    Session::flash('message', 'Division Must Be Required'); 
+    Session::flash('class_type', 'danger'); 
+
+
+     return redirect()->back();
+
+ }
+
+ 
+ if($customer_address == NULL){
+    Session::flash('message', 'Address Must Be Required'); 
+    Session::flash('class_type', 'danger'); 
+
+
+     return redirect()->back();
+
+ }
   
-    $phone_number = $request->phone_number;
   
     $category_type = $request->category_type;
-
-    $product_id = $request->product_id;
-  
-    $otp_code = $request->otp_code;
   
     $ex_emi_box_charger = $request->one;
   
@@ -402,10 +513,27 @@ public function mobile_order_success(Request $request) {
   
     $ex_issue_network = $request->four;
 
+    $network_issue_short_notes = $request->network_issue_short_notes;
 
 
+        //   Get Data From Session Otp Table and Mobile Order Table
+        $session_id = Session::getId();
+
+        // From Order Table - Mobile 
+        $order_mobile_category =  DB::table('order_mobile_categories')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+
+        $session_otp = DB::table('session_otp')->orderBy('id', 'desc')->where('session_id',$session_id)->first();
+        
+
+        $product_id  =  $order_mobile_category->product_id;
+
+        $temporary_order_id  = $session_otp->temporary_order_id;
+
+        $phone_number  =  $session_otp->phone;
+        
             /** 
          * Check File is uploaded or not  time()."_".
+         * front_phone_image
          */
 
     $front_phone_image = $request->file('front_phone_image');
@@ -426,6 +554,7 @@ public function mobile_order_success(Request $request) {
 
                 /** 
          * Check File is uploaded or not  time()."_".
+         * back_phone_image
          */
 
         $back_phone_image = $request->file('back_phone_image');
@@ -441,25 +570,98 @@ public function mobile_order_success(Request $request) {
         }
 
 
+        
+              
+        
+                /** 
+         * Check File is uploaded or not  time()."_".
+         * top
+         */
+
+        $top = $request->file('top');
+
+        
+        if ($top) {
+            
+            $img_name_top = time()."_".$top->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $top->move($destinationPathOne, $img_name_top);  
+        }else{
+
+            $img_name_top = null;
+
+        }
+
+
+        
+                /** 
+         * Check File is uploaded or not  time()."_".
+         * bottom
+         */
+
+        $bottom = $request->file('bottom');
+
+        
+        if ($bottom) {
+            
+            $img_name_bottom = time()."_".$bottom->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $bottom->move($destinationPathOne, $img_name_bottom);  
+        }else{
+            $img_name_bottom = null;
+        }
+
+
+        
+                /** 
+         * Check File is uploaded or not  time()."_".
+         * left
+         */
+
+        $left = $request->file('left');
+
+        
+        if ($left) {
+            
+            $img_name_left = time()."_".$left->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $left->move($destinationPathOne, $img_name_left);  
+        }else{
+            $img_name_left = null;
+        }
+
+
+  /** 
+         * Check File is uploaded or not  time()."_".
+         * right
+         */
+
+        $right = $request->file('right');
+
+        
+        if ($right) {
+            
+            $img_name_right = time()."_".$right->getClientOriginalName();
+
+            $destinationPathOne = public_path('images');
+
+            $right->move($destinationPathOne, $img_name_right);  
+        }else{
+            $img_name_right = null;
+        }
 
 
 
-    $customer_division = $request->customer_division;
 
-    $customer_address = $request->customer_address;
+
+
     
-  
-//   Check OTP based on Mobile Number (Latest Sended OTP) 
-   
-   $otp_code_is_valid =  false;
-
-   $session_order = DB::table('session_otp')->where('phone',$phone_number)->orderBy('id', 'DESC')->first(); 
-
- if($session_order->otp == $otp_code){
-    $otp_code_is_valid = true;
- }
-
-    if($otp_code_is_valid){ 
     // Save Data in Orders Table and get the inserted ID 
 
    $order_id = DB::table('orders')->insertGetId([
@@ -480,26 +682,26 @@ public function mobile_order_success(Request $request) {
         'ex_phone_problem' => $ex_phone_problem,
         'ex_parts_change' => $ex_parts_change,
         'ex_issue_network' => $ex_issue_network,
+        'network_issue_short_notes' => $network_issue_short_notes,
         'front_phone_image' => $img_name_front,
         'back_phone_image' => $img_name_back,
+        'top_img' => $img_name_top,
+        'bottom_img' => $img_name_bottom,
+        'left_img' => $img_name_left,
+        'right_img' => $img_name_right,
         'customer_division' => $customer_division,
         'customer_address' => $customer_address,
         'category_type' => $category_type,
     
     ]);
-    $message = "Welcome From Live Link BD. Your Order Place Successfully. We will contact with you soon.";
+    $message = "Successfull !! You have placed an Sell Request to LiveLink . We will contact within 24 hours.  Thank you for being with us.";
     $this->smsOrderStatusUpdate($phone_number,$message);
 
 
     return redirect()->route('successfully_place_order');
 
-    } else{
-
-        die;
-        return redirect()->route('successfully_place_order');
 
 
-    }
 
 
 
@@ -550,7 +752,7 @@ public function successfully_place_order(){
 public function mobile_category_latest_order(){
 
 
-    $mobile_category_latest_orders = DB::table('orders')->where('category_type','mobile_category')->orderBy('id', 'DESC')->get();
+    $mobile_category_latest_orders = DB::table('orders')->where('category_type','mobile_category')->orderBy('created_at', 'DESC')->get();
 
     $data = [
         'mobile_category_latest_orders' => $mobile_category_latest_orders,
@@ -695,7 +897,7 @@ public function sendSms($number,$code){
     // $text="Hello Dear, Customer . Your OPT  Code ".$code;
 
     
-    $text="From Live Link BD Dashboard OPT code =  ".$code;
+    $text="<#> ".$code." is your OTP from LiveLink. DO NOT share your OTP or password with anyone. Thank You";
     $data= array(
     'username'=>"01857126452",
     'password'=>"2RVXW48F",

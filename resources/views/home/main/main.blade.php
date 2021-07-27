@@ -18,7 +18,7 @@
   <!-- Header -->
     <header id="header">
       <div class="inner">
-        <a href="{{ route('home') }}" class="logo" > <img src="{{  URL::asset('/images/livelinkbd-logo.png') }}" alt="Live Link BD Dashboard "> </a>
+        <a href="{{ route('home') }}" class="logo" > <img src="{{  URL::asset('/images/logo.png') }}" alt="Live Link BD Dashboard "> </a>
         <nav id="nav">
           <a href="http://www.livelinkbd.com/" target="_blank">Visit Website</a>
      

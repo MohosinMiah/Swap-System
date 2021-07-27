@@ -330,7 +330,9 @@
     <div id="get_up_to" class="row" style="display: none">
       <div class="col-md-12">
         <h3 id="get_up_to_value"></h3>
+        <p id="alart_short_note" style="color:red"></p>
       </div>
+      
       <div class="col-md-12">
         {{--  <a class="btn btn-primary" id="get_exact_value" >Get Exact Value</a>  --}}
 
@@ -462,10 +464,12 @@
     $('#get_estimated_value').remove();
     {{--  $('#get_exact_value').append("Get Exact Value");  --}}
     $('#get_up_to_value').append('Get Up To '+data.estimated_value+" TK");
-
+    $('#alart_short_note').append("Short Note Example will put here");
  
     $("#get_up_to").css("display", "");
 
+    $('.ram_rom').css("pointer-events", "none"); 
+    $('.sim').css("pointer-events", "none"); 
     
   }  })
 }

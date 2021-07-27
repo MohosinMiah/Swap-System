@@ -1,4 +1,3 @@
-  
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +17,9 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
   
-  
+  <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/global.css')}}">
+
+  <link rel="icon"  type="image/gif" href="{{ URL::asset('images/logo.png')}}" sizes="16x16">
 
     @yield('css')
     <title>Live Link BD</title>
@@ -46,8 +47,8 @@
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-          <a  href="{{ route('home') }}" class="navbar-brand d-flex align-items-center logo">
-             <img src="{{  URL::asset('/images/logo.png') }}" alt="Live Link BD Dashboard ">
+          <a  href="https://www.livelinkbd.com/" class="navbar-brand d-flex align-items-center logo">
+             <img src="{{  URL::asset('/images/logo.png') }}" alt="Live Link BD ">
             <strong></strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

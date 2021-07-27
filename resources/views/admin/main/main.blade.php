@@ -30,7 +30,6 @@
       background-color: transparent;
       font-size: 20px;
   ">Back To Login</a>
-    {{-- <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Swap Software Dashboard"> </a> --}}
     <h1> <h1>Live Link BD Software Dashboard</h1> </h1>
   </div>
 

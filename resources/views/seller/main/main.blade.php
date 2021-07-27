@@ -13,14 +13,14 @@
   <link rel="stylesheet" href="{{ URL::asset('/css/global.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('/css/admin/login.css') }}">
 
-  
+  <link rel="icon" href="{{ URL::asset('/images/logo.png') }}" type="image/gif" sizes="16x16">
+
 
 </head>
 <body>
 
   {{-- Header Section  --}}
 
-   {{--  <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Discount Logo"> </a>  --}}
  
   {{-- Header Section  --}}
 
@@ -34,7 +34,6 @@
       background-color: transparent;
       font-size: 20px;
   ">Back To Login</a>
-    {{-- <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Swap Software Dashboard"> </a> --}}
     <h1> <h1>Live Link BD Software Dashboard</h1> </h1>
   </div>
 

@@ -63,8 +63,7 @@
                   <tr>
                       <th>ID</th>
                       <th>Model Name</th>
-                      <thCustomer Num.</th>
-                      <th>Date</th>
+                      <th>Customer Num.</th>
                       <th>Brand</th>
                       <th>Date</th>
                       <th>Status</th>
@@ -77,6 +76,8 @@
                  @foreach ($data['mobile_category_latest_orders'] as $mobile_orders)
                 
                  <?php 
+            
+
                  $product = DB::table('mobile_categories')->where('id',$mobile_orders->product_id)->first();
                  $brand = DB::table('brands')->where('id',$product->brand_id)->first();
                  $order =  DB::table('order_mobile_categories')->where('id',$mobile_orders->temporary_order_id)->first();
@@ -111,7 +112,7 @@
                  ?>
                 
                   <tr style="background-color: {{  $class_name }}">
-                     <td>{{$mobile_orders->id}}</td>
+                     <td>{{$mobile_orders->id}} </td>
                      <td>
                        <a href="{{route('admin.mobile_order_details',$mobile_orders->id)}}" class="text-success" target="__blank" data-toggle="tooltip" data-placement="top" title="Order Details"> {{ $product->mobile_model }}</a>
                       </td>
@@ -188,8 +189,7 @@
                 <tr>
                       <th>ID</th>
                       <th>Model Name</th>
-                      <thCustomer Num.</th>
-                      <th>Date</th>
+                      <th>Customer Num.</th>
                       <th>Brand</th>
                       <th>Date</th>
                       <th>Status</th>
@@ -206,6 +206,7 @@
 
 </div>
 <!-- End of Main Content -->
+
 
 
 

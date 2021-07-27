@@ -7,6 +7,11 @@
   .short_note_style{
     width: 85%;
   }
+
+  .four_short_note {
+    visibility: hidden;
+    width: 90%;
+  }
 </style>
 
 @stop
@@ -51,25 +56,24 @@ $('#three').click(function(){
 });
 
 
-$('#four').click(function(){
 
-  four_extra = !four_extra; 
-  if(four_extra){
-    $('#four_short_note').css('display','');
+ 
+
+$(function(){
+  $('input[name="four"]').click(function(){
+  
+    var four_seleceted_value = $("input[name='four']:checked").val();
+
+
+  if(four_seleceted_value == "YES"){
+    $('.four_short_note').css('visibility','visible');
 
   }else{
-    $('#four_short_note').css('display','none');
+    $('.four_short_note').css('visibility','hidden');
 
   }
-  
+  });
 });
-
-
-
-
-
-
-
 
 
 
@@ -119,13 +123,13 @@ $('#four').click(function(){
 
         <div class="form-check form-switch">
           {{-- <input class="form-check-input" type="checkbox" name="one" id="one" value="Yes"> --}}
-          <label class="form-check-label" for="one">ফোনের সাথে IEMI matched বক্স এবং চার্জার আছে? *</label>
+          <label class="form-check-label" for="one">1) ফোনের সাথে IEMI matched বক্স এবং চার্জার আছে? *</label>
                       <br>
           <label class="radio-inline">
             <input type="radio" name="one" value="YES"> YES
           </label>
           <label class="radio-inline">
-            <input type="radio" name="one" value="NO"> NO
+            <input type="radio" name="one" value="NO" required> NO
           </label>
 
 
@@ -133,16 +137,16 @@ $('#four').click(function(){
 
         <div class="form-check form-switch">
           {{-- <input class="form-check-input" type="checkbox" id="two" name="two" value="Yes"> --}}
-          <label class="form-check-label" for="two">ফোনে কোন প্রকার দাগ অথবা কোন ডেন্ট আছে? *</label>
+          <label class="form-check-label" for="two">2) ফোনে কোন প্রকার দাগ অথবা কোন ডেন্ট আছে? *</label>
           <br>
           <label class="radio-inline">
-            <input type="radio" name="two" value="Screatch"> Screatch
+            <input type="radio" name="two" value="Screatch" > Screatch
           </label>
           <label class="radio-inline">
             <input type="radio" name="two" value="Dent"> Dent
           </label>
           <label class="radio-inline">
-            <input type="radio" name="two" value="NO"> NO
+            <input type="radio" name="two" value="NO" required> NO
           </label>
 
 
@@ -150,13 +154,13 @@ $('#four').click(function(){
 
         <div class="form-check form-switch">
           {{-- <input class="form-check-input" type="checkbox" id="three" value="Yes"> --}}
-          <label class="form-check-label" for="three">ফোনের কোন পার্টস চেঞ্জ করা হয়েছে অথবা খোলা হয়েছে? *</label>
+          <label class="form-check-label" for="three">3) ফোনের কোন পার্টস চেঞ্জ করা হয়েছে অথবা খোলা হয়েছে? *</label>
           <br>
           <label class="radio-inline">
-            <input type="radio" name="three" value="YES"> YES
+            <input type="radio" name="three" value="YES" > YES
           </label>
           <label class="radio-inline">
-            <input type="radio" name="three" value="NO"> NO
+            <input type="radio" name="three" value="NO" required> NO
           </label>
 
 
@@ -165,37 +169,83 @@ $('#four').click(function(){
 
         <div class="form-check form-switch">
           {{-- <input class="form-check-input" type="checkbox" id="four"> --}}
-          <label class="form-check-label" for="four">ফোনে কোন ধরনের সমস্যা আছে? (নেটওয়ার্ক সিগ্যানাল এবং হ্যার্ডওয়্যার)  *</label>
+          <label class="form-check-label" for="four">4) ফোনে কোন ধরনের সমস্যা আছে? (নেটওয়ার্ক সিগ্যানাল এবং হ্যার্ডওয়্যার)  *</label>
           <br>
           <label class="radio-inline">
-            <input type="radio" name="four" value="YES"> YES
+            <input type="radio" name="four" value="YES" id="question_four_yes"> YES
           </label>
           <label class="radio-inline">
-            <input type="radio" name="four" value="NO"> NO
+            <input type="radio" name="four" value="NO" required> NO
           </label>
-
-        </div>
-
-
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="front_phone_image"> Front Image *</label>
           <br>
-            <input type="file" class="form-control" name="front_phone_image" required> 
+           <input type="text"  name="network_issue_short_notes" class="four_short_note" >
         </div>
 
 
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="form-check form-switch">
+            <label class="form-check-label" for="front_phone_image"> Front Image *</label>
+            <br>
+              <input type="file" class="form-control" name="front_phone_image" required> 
+          </div>
+        </div>
+        
+
+        <div class="col-md-6">
+          <div class="form-check form-switch">
+            <label class="form-check-label" for="back_phone_image"> Back Image *</label>
+            <br>
+              <input type="file" class="form-control" name="back_phone_image" required> 
+          </div>
+        </div>
+
+        
+        <div class="col-md-6">
+          <div class="form-check form-switch">
+            <label class="form-check-label" for="top"> Top Image *</label>
+            <br>
+              <input type="file" class="form-control" name="top" required> 
+          </div>
+        </div>
+
+      <div class="col-md-6">
         <div class="form-check form-switch">
-          <label class="form-check-label" for="back_phone_image"> Back Image *</label>
+          <label class="form-check-label" for="bottom"> Bottom Image *</label>
           <br>
-            <input type="file" class="form-control" name="back_phone_image" required> 
+            <input type="file" class="form-control" name="bottom" required> 
         </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="left"> Left Image *</label>
+          <br>
+            <input type="file" class="form-control" name="left" required> 
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="right"> Right Image *</label>
+          <br>
+            <input type="file" class="form-control" name="right" required> 
+        </div>
+      </div>  
+
+      </div>
+
 
     <hr>
-    
+     <h3 class="text-center">Address</h3>
+     <hr>
+
     <div class="form-group">
       <label for="customer_division">  Select Division *</label>
       <select class="form-control" name="customer_division" id="customer_division" required>
-        <option>Select Your Division</option>
+        <option value="">Select Your Division</option>
         <option value="Barisal">Barisal</option>
         <option value="Chittagong">Chittagong</option>
         <option  value="Dhaka">Dhaka</option>

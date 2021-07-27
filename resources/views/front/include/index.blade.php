@@ -3,7 +3,7 @@
 
 
 @section('slider')
-
+{{--  
 <div class="row">
   <div class="col-md-12" >
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -33,20 +33,24 @@
       </a>
     </div>
   </div>
-</div>
+</div>  --}}
 
   @stop
 
 
-@section('hero')
-<section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">SMART PHONE</h1>
-      <p class="lead text-muted">SELL YOUR SMART PHONE FOR QUICK CASH.</p>
-      <img src="{{ url('/images/apple_fav.PNG') }}" alt="Smart Phone">
+  @section('hero')
+  <div class="row">
+    <div class="col-md-12">
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">SMART PHONE</h1>
+          <p class="lead text-muted">SELL YOUR SMART PHONE FOR QUICK CASH.</p>
+          <img class="img-fluid img-responsive" src="{{ url('/images/apple_fav.PNG') }}" alt="Smart Phone">
+        </div>
+      </section> 
     </div>
-  </section> 
-@stop
+  </div>
+  @stop
 
 
 

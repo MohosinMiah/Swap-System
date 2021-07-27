@@ -41,8 +41,7 @@
                             <th>ID</th>
                             <th>Model Name</th>
                             <th>Category</th>
-                            <thCustomer Num.</th>
-                            <th>Date</th>
+                            <th>Customer Num.</th>
                             <th>Brand</th>
                             <th>Date</th>
                             <th>Status</th>
@@ -167,8 +166,7 @@
                             <th>ID</th>
                             <th>Model Name</th>
                             <th>Category</th>
-                            <thCustomer Num.</th>
-                            <th>Date</th>
+                            <th>Customer Num.</th>
                             <th>Brand</th>
                             <th>Date</th>
                             <th>Status</th>

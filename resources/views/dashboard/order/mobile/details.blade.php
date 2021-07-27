@@ -176,7 +176,35 @@
             <h2 class="text-center">More Details About Order</h2>
             <hr>
             <br>
+            <h2 class="text-center">Question Answers</h2>
+            <hr> <br>
+            <div class="form-group">
+              <label for="specificationbattery">1) ফোনের সাথে IEMI matched বক্স এবং চার্জার আছে? </label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->ex_emi_box_charger }}"  readonly>
+            </div>
 
+            <div class="form-group">
+              <label for="specificationbattery">2) ফোনে কোন প্রকার দাগ অথবা কোন ডেন্ট আছে? </label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->ex_phone_problem }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">3) ফোনের কোন পার্টস চেঞ্জ করা হয়েছে অথবা খোলা হয়েছে?  </label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->ex_parts_change }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery">4) ফোনে কোন ধরনের সমস্যা আছে? (নেটওয়ার্ক সিগ্যানাল এবং হ্যার্ডওয়্যার)   </label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->ex_issue_network }}"  readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="specificationbattery"> Short Note For Question No. 4   </label>
+              <input type="text" class="form-control" value="{{ $data['mobile_category_order_detail']->network_issue_short_notes }}"  readonly>
+            </div>
+
+            <h2 class="text-center">Uploaded Images</h2>
+            <hr> <br>
             <div class="form-group">
               <label for="name"> Customer Phone Front Image *</label>
               {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
@@ -188,6 +216,34 @@
               <label for="name"> Customer Phone Back Image *</label>
               {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
               <img src="{{url('/images/'.$data['mobile_category_order_detail']->back_phone_image)}}" alt="Mobile Back Phone Image" width="400" height="300">
+
+            </div>
+
+            <div class="form-group">
+              <label for="name"> Customer Phone Top Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->top_img)}}" alt="Mobile Top Phone Image" width="400" height="300">
+
+            </div>
+
+            <div class="form-group">
+              <label for="name"> Customer Phone Bottom Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->bottom_img)}}" alt="Mobile Bottom Phone Image" width="400" height="300">
+
+            </div>
+
+            <div class="form-group">
+              <label for="name"> Customer Phone Left Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->left_img)}}" alt="Mobile Left Phone Image" width="400" height="300">
+
+            </div>
+
+            <div class="form-group">
+              <label for="name"> Customer Phone Right Image *</label>
+              {{-- <input type="file" class="form-control" id="image" name="image"  readonly> --}}
+              <img src="{{url('/images/'.$data['mobile_category_order_detail']->right_img)}}" alt="Mobile Right Phone Image" width="400" height="300">
 
             </div>
 

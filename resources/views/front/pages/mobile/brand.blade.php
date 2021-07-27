@@ -6,7 +6,7 @@
 @section('hero')
 <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading"> {{ ucfirst($data['brand_name']) }} </h1>
+      <h1 class="jumbotron-heading text-uppercase"> {{ $data['brand_name'] }} </h1>
      
     </div>
   </section> 
@@ -35,17 +35,23 @@
   @foreach ($data['products'] as $product)
     
 
-  <div class="col-md-4">
-    <div class="card mb-4 box-shadow">
-      <a href="{{ route('single_product',[Str::slug($data['category_name']),Str::slug($data['brand_name']),Str::slug($product->mobile_model)]) }}" > <img class="card-img-top" src="{{ url('/images/'.$product->image) }}"  alt="{{ $product->mobile_model }}">  </a>
+  <div class="col-6 col-sm-6 col-md-2 col-lg-2">
+    <div class="card mb-2 box-shadow">
+      <a href="{{ route('single_product',[Str::slug($data['category_name']),Str::slug($data['brand_name']),Str::slug($product->mobile_model)]) }}" > <img class="card-img-top" src="{{ url('/images/'.$product->image) }}"  alt="{{ $product->mobile_model }}"> 
       <div class="card-body">
         <p class="card-text">{{ $product->mobile_model }}</p>
       
       </div>
+    </a>
     </div>
   </div>
 
   @endforeach
 
 </div>
+
+
+
   @stop
+
+  

@@ -123,6 +123,7 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
         Route::get('/mobile_order_details/{id}', 'MobileCategoryMaster@mobile_order_details')->name('mobile_order_details');
 
+
         Route::get('/mobileCategory/latest/orders','MobileCategoryMaster@mobile_category_latest_order')->name('mobileCategory_latest_order');
 
         Route::post('/update/order/status','MobileCategoryMaster@generic_update_order_status')->name('generic_update_order_status');
@@ -273,5 +274,14 @@ Route::any('/sell/get_exact_value/place_request/{category}/{brand}/{product}','M
 
 
 Route::post("sell/mobile/order/success",'MobileCategoryMaster@mobile_order_success')->name('mobile_order_success');
+
+Route::get("sell/mobile/multi_form/place/order",'MobileCategoryMaster@mobile_order_multi_form')->name('mobile_order_multi_form');
+
+Route::get('/mobile_order/display_otp_form', 'MobileCategoryMaster@display_otp_form')->name('display_otp_form');
+
+
+Route::any("otp/mobile/otp_verifier_check",'MobileCategoryMaster@otp_verifier_check')->name('otp_verifier_check');
+
+Route::any("status/mobile/otp/error",'MobileCategoryMaster@otp_error_message')->name('otp_error_message');
 
 Route::any("placed/sell/order/success",'MobileCategoryMaster@successfully_place_order')->name('successfully_place_order');

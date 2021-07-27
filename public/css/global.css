@@ -5,8 +5,8 @@
 
 
 .logo{
-    background-color: green;
-    border-radius: 4px;
+    /* background-color: green;
+    border-radius: 4px; */
 }
 
 
@@ -38,3 +38,42 @@
 .text_info{
     color: green;
 }
+
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+h3{
+    font-size: 1.2rem;
+}
+
+
+/* All Link Style   */
+
+a {
+    color: #212529;
+}
+
+
+
+/* All Button Style   */
+
+.btn-primary {
+    color: #fff;
+    background-color: #212529;
+    border-color: #f0f3f7;
+}
+
+
+
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #bb1c1f;
+    border-color: #f0f3f7;
+}
+

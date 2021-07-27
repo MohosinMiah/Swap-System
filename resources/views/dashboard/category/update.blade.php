@@ -39,7 +39,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
 
-          <h2 class="text-center">Update Customer</h2>
+          <h2 class="text-center">Update Category</h2>
                   <!-- Content Row -->
             <div class="card">
                 <div class="card-body">

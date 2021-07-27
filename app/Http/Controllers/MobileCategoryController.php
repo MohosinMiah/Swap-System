@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\MobileCategory;
 use App\Category;
 use App\Brand;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
@@ -14,6 +15,10 @@ class MobileCategoryController extends Controller
 
 
     public $table = 'mobile_categories';
+
+
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -395,6 +400,7 @@ class MobileCategoryController extends Controller
 
 
 
+                    'specificationram_rom' => $specificationram_rom,  
 
                     'specificationsim' => $specificationsim,
 

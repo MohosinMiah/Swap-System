@@ -133,28 +133,28 @@
     
             <div class="form-group">
               <label for="ram_rom">RAM | ROM *</label>
-              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" value="{{ $mobileCategory->ram_rom }}"  required>
+              <input type="text" class="form-control" id="ram_rom" name="ram_rom" data-role="tagsinput" value="{{ $mobileCategory->ram_rom }}"  >
             </div>
 
             <div class="form-group">
-              <label for="sim">SIM *</label>
-              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" value="{{ $mobileCategory->sim }}"   required>
+              <label for="sim">SIM </label>
+              <input type="text" class="form-control" id="sim" name="sim" data-role="tagsinput" value="{{ $mobileCategory->sim }}"   >
             </div>
 
          
             {{--  <div class="form-group">
-              <label for="camera">Camera *</label>
-              <input type="text" class="form-control" id="camera" name="camera" data-role="tagsinput"   required>
+              <label for="camera">Camera </label>
+              <input type="text" class="form-control" id="camera" name="camera" data-role="tagsinput"   >
             </div>
 
             <div class="form-group">
-              <label for="processor">Processor *</label>
-              <input type="text" class="form-control" id="processor" name="processor" data-role="tagsinput"   required>
+              <label for="processor">Processor </label>
+              <input type="text" class="form-control" id="processor" name="processor" data-role="tagsinput"   >
             </div>
 
             <div class="form-group">
-              <label for="battery">Battery *</label>
-              <input type="text" class="form-control" id="battery" name="battery" data-role="tagsinput"   required>
+              <label for="battery">Battery </label>
+              <input type="text" class="form-control" id="battery" name="battery" data-role="tagsinput"   >
             </div>  --}}
 
             <hr>
@@ -167,28 +167,28 @@
             <h3 class="text-center">Specifications</h3>
      
                <div class="form-group">
-               <label for="specificationram_rom">RAM | ROM *</label>
-               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput" value="{{ $mobileCategory->specificationram_rom }}" required>
+               <label for="specificationram_rom">RAM | ROM </label>
+               <input type="text" class="form-control" id="specificationram_rom" name="specificationram_rom" data-role="tagsinput" value="{{ $mobileCategory->specificationram_rom }}" >
              </div>
     
              <div class="form-group">
-               <label for="specificationsim">SIM *</label>
-               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $mobileCategory->specificationsim }}"  required>
+               <label for="specificationsim">SIM </label>
+               <input type="text" class="form-control" id="specificationsim" name="specificationsim" data-role="tagsinput"  value="{{ $mobileCategory->specificationsim }}"  >
              </div>
 
              <div class="form-group">
-               <label for="specificationcamera">Camera *</label>
-               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput"  value="{{ $mobileCategory->specificationcamera }}" required>
+               <label for="specificationcamera">Camera </label>
+               <input type="text" class="form-control" id="specificationcamera" name="specificationcamera" data-role="tagsinput"  value="{{ $mobileCategory->specificationcamera }}" >
              </div>
  
              <div class="form-group">
-               <label for="specificationprocessor">Processor *</label>
-               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" value="{{ $mobileCategory->specificationprocessor }}"  required>
+               <label for="specificationprocessor">Processor </label>
+               <input type="text" class="form-control" id="specificationprocessor" name="specificationprocessor" data-role="tagsinput" value="{{ $mobileCategory->specificationprocessor }}"  >
              </div>
  
              <div class="form-group">
-               <label for="specificationbattery">Battery *</label>
-               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $mobileCategory->specificationbattery }}"  required>
+               <label for="specificationbattery">Battery </label>
+               <input type="text" class="form-control" id="specificationbattery" name="specificationbattery" data-role="tagsinput" value="{{ $mobileCategory->specificationbattery }}"  >
              </div>
  
 
